@@ -25,6 +25,11 @@ variable "machine_type" {
     default         = "t2.micro"
 }
 
+variable "key_name" {
+    description     = "AWS Key Name"
+    default         = "awslabs"
+}
+
 variable "vpc_cidr" {
     description     = "CIDR for the whole VPC"
     default         = "10.20.0.0/16"
