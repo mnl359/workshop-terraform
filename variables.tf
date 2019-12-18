@@ -20,6 +20,11 @@ variable "aws_amis" {
     }
 }
 
+variable "machine_type" {
+    description     = "Cloud Machine Type"
+    default         = "t2.micro"
+}
+
 variable "vpc_cidr" {
     description     = "CIDR for the whole VPC"
     default         = "10.20.0.0/16"
