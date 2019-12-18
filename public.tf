@@ -40,7 +40,7 @@ resource "aws_security_group" "web" {
 }
 
 resource "aws_instance" "web-1" {
-    ami                         = "${lookup(var.aws_amis, var.aws_region)}"
+    ami                         = lookup(var.aws_amis, var.aws_region)
     availability_zone           = var.availability_zone
     instance_type               = "m1.small"
     #key_name                    = var.aws_key_name
