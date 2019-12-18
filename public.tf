@@ -51,7 +51,7 @@ resource "aws_instance" "web-1" {
 
 
     tags = {
-        Name = "Web Server 1"
+        Name = "Frontend Server"
     }
 }
 
