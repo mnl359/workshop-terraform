@@ -16,7 +16,8 @@ variable "availability_zone_b" {
 variable "aws_amis" {
     description     = "AMIs by Region"
     default = {
-        us-east-1 = "ami-04b9e92b5572fa0d1" # Ubuntu-bionic-18.04-amd64
+        #us-east-1 = "ami-04b9e92b5572fa0d1" # Ubuntu-bionic-18.04-amd64
+        us-east-1 = "ami-00068cd7555f543d5" # ami-00068cd7555f543d5 Amazon Linux 2 AMI
     }
 }
 
@@ -28,6 +29,11 @@ variable "machine_type" {
 variable "key_name" {
     description     = "AWS Key Name"
     default         = "awslabs"
+}
+
+variable "ssh_private_key" {
+    description     = "Private Key for Terraform-Ansible Project"
+    default         = "awslabs.pem"
 }
 
 variable "vpc_cidr" {

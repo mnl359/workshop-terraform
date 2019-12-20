@@ -1,0 +1,19 @@
+# tasks file for app
+
+- name: Selinux to Permissive mode
+  selinux:
+    policy: targeted
+    state: permissive
+
+- name:
+  selinux:
+    state: disabled
+
+- name: Installing httpd
+  yum:
+    name:
+      - httpd
+    use_backend: yum
+
+- name: Starting httpd service
+  service: name=httpd state=started

@@ -60,6 +60,20 @@ resource "aws_instance" "webserver" {
     tags = {
         Name = "Frontend Server"
     }
+
+    provisioner "remote-exec" {
+        inline = ["sudo hostname"]
+
+        connection {
+            type                = "ssh"
+            user                = "ec2-user"
+            private_key         = file(var.ssh_private_key)
+        }
+    }
+
+    provisioner "local-exec" {
+        command = "ansible-playbook -i ec2.py ansible/app.yml --private=awslabs.pem --user ec2-user" 
+    }
 }
 
 resource "aws_eip" "webserver" {
