@@ -1,3 +1,4 @@
-# defaults file for app
+---
+# Defaults file for app
 
-dest: /var/www/html
+dest: /var/www/html/

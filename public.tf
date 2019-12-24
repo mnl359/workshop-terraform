@@ -32,11 +32,18 @@ resource "aws_security_group" "web" {
         cidr_blocks = ["0.0.0.0/0"]
     }
 
-    egress { # MySQL
-        from_port   = 3306
-        to_port     = 3306
-        protocol    = "tcp"
-        cidr_blocks = [var.private_subnet_cidr]
+    # egress { # MySQL
+    #     from_port   = 3306
+    #     to_port     = 3306
+    #     protocol    = "tcp"
+    #     cidr_blocks = [var.private_subnet_cidr]
+    # }
+
+    egress {
+        from_port   = 0
+        to_port     = 0
+        protocol    = "-1"
+        cidr_blocks = ["0.0.0.0/0"]
     }
 
     vpc_id = aws_vpc.default.id
@@ -51,28 +58,18 @@ resource "aws_instance" "webserver" {
     availability_zone           = var.availability_zone
     instance_type               = var.machine_type
     key_name                    = aws_key_pair.admin_key.key_name
-    #key_name                    = var.key_name
     vpc_security_group_ids      = [aws_security_group.web.id]
     subnet_id                   = aws_subnet.us-east-1a-public.id
     associate_public_ip_address = true
     source_dest_check           = false
 
     tags = {
-        Name = "Frontend Server"
+        Name = "App"
     }
 
     provisioner "local-exec" {
-    command = <<EOD
-cat <<EOF > aws_hosts
-[dev]
-${aws_instance.webserver.public_ip}
-EOF
-EOD
-  }
-
-    # provisioner "local-exec" {
-    #     command = "ansible-playbook -i ansbile/ec2.py ansible/app.yml --private=awslabs.pem --user ec2-user" 
-    # }
+        command = "aws ec2 wait instance-status-ok --instance-ids ${aws_instance.webserver.id} --profile default && ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user"
+    }
 }
 
 resource "aws_eip" "webserver" {

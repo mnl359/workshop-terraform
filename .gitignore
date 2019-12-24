@@ -4,3 +4,5 @@ terraform.*
 *.backup
 tfplan
 ansible_aws.pub
+ansible/ansible.cfg
+ansible.cfg
