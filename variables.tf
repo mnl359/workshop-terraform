@@ -26,6 +26,11 @@ variable "machine_type" {
     default         = "t2.micro"
 }
 
+variable "number_of_instances" {
+    description     = "Number of instances"
+    default         = 1
+}
+
 variable "key_name" {
     description     = "AWS Key Name"
     default         = "awslabs"

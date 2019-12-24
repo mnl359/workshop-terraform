@@ -16,7 +16,6 @@ resource "aws_internet_gateway" "default" {
 }
 
 resource "aws_eip" "default" {
-    #count = 1
     vpc = true
     depends_on = [aws_internet_gateway.default]
 }
