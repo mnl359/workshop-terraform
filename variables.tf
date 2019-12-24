@@ -36,6 +36,11 @@ variable "ssh_private_key" {
     default         = "awslabs.pem"
 }
 
+variable "ssh_public_key" {
+    description     = "Public Key for Terraform-Ansible Project"
+    default         = "ansible_aws.pub"
+}
+
 variable "vpc_cidr" {
     description     = "CIDR for the whole VPC"
     default         = "10.20.0.0/16"

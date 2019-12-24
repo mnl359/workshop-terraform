@@ -3,4 +3,4 @@ terraform.*
 *.tfstate
 *.backup
 tfplan
-awslabs.pem
+ansible_aws.pub

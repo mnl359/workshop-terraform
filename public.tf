@@ -61,19 +61,18 @@ resource "aws_instance" "webserver" {
         Name = "Frontend Server"
     }
 
-    provisioner "remote-exec" {
-        inline = ["sudo hostname"]
-
-        connection {
-            type                = "ssh"
-            user                = "ec2-user"
-            private_key         = file(var.ssh_private_key)
-        }
-    }
-
     provisioner "local-exec" {
-        command = "ansible-playbook -i ec2.py ansible/app.yml --private=awslabs.pem --user ec2-user" 
-    }
+    command = <<EOD
+cat <<EOF > aws_hosts
+[dev]
+${aws_instance.webserver.public_ip}
+EOF
+EOD
+  }
+
+    # provisioner "local-exec" {
+    #     command = "ansible-playbook -i ansbile/ec2.py ansible/app.yml --private=awslabs.pem --user ec2-user" 
+    # }
 }
 
 resource "aws_eip" "webserver" {
@@ -83,5 +82,6 @@ resource "aws_eip" "webserver" {
 
 resource "aws_key_pair" "admin_key" {
     key_name    = "admin_key"
-    public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHczwxI9IS1TFYTFHTSvvh+yaOTjAil3WNuW8aks5ZdCjCYGfWzfufqrOsfEfTZe+21HRdrx3HdIgGPiW2GNubSmWj7a2M28hLTRt0XSWCvMdkBbaiUJWLhfc8Y5nHBCy813kMs9CgqMN8c6xvyaQt0mNFPh4uEmb0N+dQb6lkibEhBJynNmatALEyin8VDsAzZlISEbmqIhx6s+Ju1luv2YeE5QxjW2A48duHyONiP3fx4DpqZrIY9ZlhBChdTB+vIn+v5iZiG9cYCqqzdmIZTowGub7h7gSx7kYLignFa10uoWmMDR8gNxm59C2r2w7cvqMzxRR39LJ8+TyDAVWj"
+    public_key  = file(var.ssh_public_key)
+    # public_key  = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDHczwxI9IS1TFYTFHTSvvh+yaOTjAil3WNuW8aks5ZdCjCYGfWzfufqrOsfEfTZe+21HRdrx3HdIgGPiW2GNubSmWj7a2M28hLTRt0XSWCvMdkBbaiUJWLhfc8Y5nHBCy813kMs9CgqMN8c6xvyaQt0mNFPh4uEmb0N+dQb6lkibEhBJynNmatALEyin8VDsAzZlISEbmqIhx6s+Ju1luv2YeE5QxjW2A48duHyONiP3fx4DpqZrIY9ZlhBChdTB+vIn+v5iZiG9cYCqqzdmIZTowGub7h7gSx7kYLignFa10uoWmMDR8gNxm59C2r2w7cvqMzxRR39LJ8+TyDAVWj"
 }
