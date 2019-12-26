@@ -13,6 +13,8 @@ resource "aws_instance" "webserver" {
 
     tags = {
         Name = "App"
+        Terraform               = "true"
+        Environment             = "dev"
     }
 
     provisioner "local-exec" {

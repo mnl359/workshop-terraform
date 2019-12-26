@@ -1,17 +1,81 @@
 ---
 # tasks file for app
 
-- name: Installing httpd
+- name: Download nodejs repo installer
+  get_url: url=https://rpm.nodesource.com/setup_13.x dest=/tmp/nodejs-repo-installer.sh
+
+- name: Change nodejs repo installer permissions
+  file:
+    path: /tmp/nodejs-repo-installer.sh
+    mode: u=rwx,g=r,o=r
+
+- name: Execute the nodejs repo installer
+  shell: /tmp/nodejs-repo-installer.sh
+
+- name: Remove the nodejs repo installer
+  file: path=/tmp/nodejs-repo-installer.sh state=absent
+
+- name: Installing nodejs and mysql-client
   yum:
     name:
-      - httpd
-      - php-mysql
-      - mod_php
+      - gcc-c++ 
+      - make
+      - nodejs
+      - https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+      - mysql-community-client
+      - git
     use_backend: yum
 
-- name: Starting httpd service
-  service: name=httpd state=started
+- name: Install pm2 globally
+  shell: sudo npm -g install pm2
 
-# - name: Upload files
-#   copy: src=index.php dest={{ dest }}
-#   register: HTTPD_Restarted
+- name: Set some variable
+  set_fact:
+    release_path: "{{ project_path }}/releases/{{ lookup('pipe','date +%Y%m%d%H%M%S') }}"
+    current_path: "{{ project_path }}/current"
+
+- name: Create project path directory if it does not exist
+  file:
+    path: '{{ project_path }}'
+    state: directory
+    mode: '0755'
+
+- name: Retrieve current release folder
+  command: readlink -f current
+  register: current_release_path
+  ignore_errors: yes    
+  args:
+    chdir: "{{ project_path }}"
+
+- name: Create new release folder
+  file:
+    dest: '{{ release_path }}'
+    mode: '0755'
+    recurse: yes
+    state: directory
+
+- name: Clone Node JS MySQL Application repository
+  git:
+    repo: https://github.com/williammunozr/nodejs_mysql_app.git
+    dest: "{{ release_path }}"
+
+- name: Update npm
+  npm:
+    path: '{{ release_path }}'
+
+- name: Update symlink
+  file:
+    src: '{{ release_path }}'
+    dest: '{{ current_path }}'
+    state: link
+
+- name: Delete old pm2 process
+  command: pm2 delete node-app
+  ignore_errors: yes
+
+- name: Start pm2
+  command: pm2 start {{ current_path }}/src/app.js --name node-app
+
+- name: Delete old dir
+  shell: rm -rf {{ current_release_path.stdout }}/
+  when: current_release_path.stdout != current_path

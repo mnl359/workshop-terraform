@@ -1,5 +1,0 @@
----
-# Handlers file for app
-
-- name: HTTPD_Restarted
-  service: name=httpd state=restarted
