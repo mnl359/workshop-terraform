@@ -2,7 +2,7 @@
 
 resource "aws_db_subnet_group" "us-east-1a-private" {
     name       = "db_private_subnet"
-    subnet_ids = [aws_subnet.us-east-1a-private.id, aws_subnet.us-east-1b-private.id]
+    subnet_ids = module.vpc.private_subnets # [aws_subnet.us-east-1a-private.id, aws_subnet.us-east-1b-private.id]
 
     tags = {
         Name = "MySQL DB Subnet Group"

@@ -5,7 +5,7 @@ module "web_sg" {
 
   name        = "web_sg"
   description = "Allow incoming HTTP connections"
-  vpc_id      = aws_vpc.default.id
+  vpc_id      = module.vpc.vpc_id # aws_vpc.default.id
 
   ingress_with_cidr_blocks = [
     {
@@ -60,7 +60,7 @@ module "db_sg" {
 
   name        = "db_sg"
   description = "Allow incoming database connections."
-  vpc_id      = aws_vpc.default.id
+  vpc_id      = module.vpc.vpc_id # aws_vpc.default.id
 
   ingress_with_cidr_blocks = [
     {
@@ -69,21 +69,21 @@ module "db_sg" {
       protocol    = "tcp"
       description = "MySQL Database"
       security_groups = module.web_sg.this_security_group_id # to review while testing the app connection
-      cidr_blocks = var.vpc_cidr
+      cidr_blocks = module.vpc.vpc_cidr_block
     },
     {
       from_port   = 22
       to_port     = 22
       protocol    = "tcp"
       description = "SSH ports"
-      cidr_blocks = var.vpc_cidr
+      cidr_blocks = module.vpc.vpc_cidr_block
     },
     {
       from_port   = -1
       to_port     = -1
       protocol    = "icmp"
       description = "Allow ICMP"
-      cidr_blocks = var.vpc_cidr
+      cidr_blocks = module.vpc.vpc_cidr_block
     },
   ]
 

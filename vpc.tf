@@ -1,110 +1,135 @@
-resource "aws_vpc" "default" {
-    cidr_block              = var.vpc_cidr
-    enable_dns_hostnames    = true
+module "vpc" {
+  source                    = "terraform-aws-modules/vpc/aws"
+  version                   = "~> v2.0"
 
-    tags = {
-        Name = "terraform-aws-vpc"
-    }
+  name                      = "terraform-ansible"
+  cidr                      = "10.0.0.0/16"
+  azs                       = ["us-east-1a", "us-east-1b", "us-east-1c"]
+  private_subnets           = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
+  public_subnets            = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
+  database_subnets          = ["10.0.201.0/24", "10.0.202.0/24"]
+
+  enable_nat_gateway        = true
+  single_nat_gateway        = true
+  one_nat_gateway_per_az    = false
+  enable_vpn_gateway        = false
+
+  enable_dns_hostnames      = true
+  enable_dns_support        = true
+
+  tags = {
+    Terraform               = "true"
+    Environment             = "dev"
+  }
 }
 
-resource "aws_internet_gateway" "default" {
-    vpc_id = aws_vpc.default.id
+# resource "aws_vpc" "default" {
+#     cidr_block              = var.vpc_cidr
+#     enable_dns_hostnames    = true
 
-    tags = {
-        Name = "Terraform Internet Gateway"
-    }
-}
+#     tags = {
+#         Name = "terraform-aws-vpc"
+#     }
+# }
 
-resource "aws_eip" "default" {
-    vpc = true
-    depends_on = [aws_internet_gateway.default]
-}
+# resource "aws_internet_gateway" "default" {
+#     vpc_id = aws_vpc.default.id
 
-resource "aws_nat_gateway" "default" {
-    allocation_id   = aws_eip.default.id
-    subnet_id       = aws_subnet.us-east-1a-public.id
+#     tags = {
+#         Name = "Terraform Internet Gateway"
+#     }
+# }
 
-    tags = {
-        Name = "Nat Gateway"
-    }
+# resource "aws_eip" "default" {
+#     vpc = true
+#     depends_on = [aws_internet_gateway.default]
+# }
 
-    depends_on = [aws_internet_gateway.default]
-}
+# resource "aws_nat_gateway" "default" {
+#     allocation_id   = aws_eip.default.id
+#     subnet_id       = aws_subnet.us-east-1a-public.id
 
-/* Public Subnet */
+#     tags = {
+#         Name = "Nat Gateway"
+#     }
 
-resource "aws_subnet" "us-east-1a-public" {
-    vpc_id = aws_vpc.default.id
+#     depends_on = [aws_internet_gateway.default]
+# }
 
-    cidr_block = var.public_subnet_cidr
-    availability_zone = "us-east-1a"
+# /* Public Subnet */
 
-    tags = {
-        Name = "Public Subnet"
-    }
-}
+# resource "aws_subnet" "us-east-1a-public" {
+#     vpc_id = aws_vpc.default.id
 
-resource "aws_route_table" "us-east-1a-public" {
-    vpc_id = aws_vpc.default.id
+#     cidr_block = var.public_subnet_cidr
+#     availability_zone = "us-east-1a"
 
-    route {
-        cidr_block = "0.0.0.0/0"
-        gateway_id = aws_internet_gateway.default.id
-    }
+#     tags = {
+#         Name = "Public Subnet"
+#     }
+# }
 
-    tags = {
-        Name = "Public Subnet"
-    }
-}
+# resource "aws_route_table" "us-east-1a-public" {
+#     vpc_id = aws_vpc.default.id
 
-resource "aws_route_table_association" "us-east-1a-public" {
-    subnet_id = aws_subnet.us-east-1a-public.id
-    route_table_id = aws_route_table.us-east-1a-public.id
-}
+#     route {
+#         cidr_block = "0.0.0.0/0"
+#         gateway_id = aws_internet_gateway.default.id
+#     }
 
-/* Private Subnets */
+#     tags = {
+#         Name = "Public Subnet"
+#     }
+# }
 
-resource "aws_subnet" "us-east-1a-private" {
-    vpc_id = aws_vpc.default.id
+# resource "aws_route_table_association" "us-east-1a-public" {
+#     subnet_id = aws_subnet.us-east-1a-public.id
+#     route_table_id = aws_route_table.us-east-1a-public.id
+# }
 
-    cidr_block = var.private_subnet_cidr
-    availability_zone = var.availability_zone
+# /* Private Subnets */
 
-    tags = {
-        Name = "Private Subnet"
-    }
-}
+# resource "aws_subnet" "us-east-1a-private" {
+#     vpc_id = aws_vpc.default.id
 
-resource "aws_subnet" "us-east-1b-private" {
-    vpc_id = aws_vpc.default.id
+#     cidr_block = var.private_subnet_cidr
+#     availability_zone = var.availability_zone
 
-    cidr_block = var.private_subnet_cidr_b
-    availability_zone = var.availability_zone_b
+#     tags = {
+#         Name = "Private Subnet"
+#     }
+# }
 
-    tags = {
-        Name = "Private Subnet"
-    }
-}
+# resource "aws_subnet" "us-east-1b-private" {
+#     vpc_id = aws_vpc.default.id
 
-resource "aws_route_table" "us-east-1a-private" {
-    vpc_id = aws_vpc.default.id
+#     cidr_block = var.private_subnet_cidr_b
+#     availability_zone = var.availability_zone_b
 
-    route {
-        cidr_block = "0.0.0.0/0"
-        nat_gateway_id = aws_nat_gateway.default.id 
-    }
+#     tags = {
+#         Name = "Private Subnet"
+#     }
+# }
 
-    tags = {
-        Name = "Private Subnet"
-    }
-}
+# resource "aws_route_table" "us-east-1a-private" {
+#     vpc_id = aws_vpc.default.id
 
-resource "aws_route_table_association" "us-east-1a-private" {
-    subnet_id = aws_subnet.us-east-1a-private.id
-    route_table_id = aws_route_table.us-east-1a-private.id
-}
+#     route {
+#         cidr_block = "0.0.0.0/0"
+#         nat_gateway_id = aws_nat_gateway.default.id 
+#     }
 
-resource "aws_route_table_association" "us-east-1b-private" {
-    subnet_id = aws_subnet.us-east-1b-private.id
-    route_table_id = aws_route_table.us-east-1a-private.id
-}
+#     tags = {
+#         Name = "Private Subnet"
+#     }
+# }
+
+# resource "aws_route_table_association" "us-east-1a-private" {
+#     subnet_id = aws_subnet.us-east-1a-private.id
+#     route_table_id = aws_route_table.us-east-1a-private.id
+# }
+
+# resource "aws_route_table_association" "us-east-1b-private" {
+#     subnet_id = aws_subnet.us-east-1b-private.id
+#     route_table_id = aws_route_table.us-east-1a-private.id
+# }
