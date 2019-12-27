@@ -19,7 +19,7 @@ resource "aws_instance" "webserver" {
     }
 
     provisioner "local-exec" {
-        command = "aws ec2 wait instance-status-ok --instance-ids ${self.id} --profile default && ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user"
+        command = "aws ec2 wait instance-status-ok --instance-ids ${self.id} --profile default && ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=${aws_db_instance.default.address}"
     }
 }
 

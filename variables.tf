@@ -28,7 +28,7 @@ variable "machine_type" {
 
 variable "number_of_instances" {
     description     = "Number of instances"
-    default         = 2
+    default         = 1
 }
 
 variable "key_name" {

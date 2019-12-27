@@ -15,13 +15,18 @@
 - name: Remove the nodejs repo installer
   file: path=/tmp/nodejs-repo-installer.sh state=absent
 
+- name: Installing mysql community release repository
+  yum:
+    name:
+      - https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
+    use_backend: yum
+
 - name: Installing nodejs and mysql-client
   yum:
     name:
       - gcc-c++ 
       - make
       - nodejs
-      - https://dev.mysql.com/get/mysql57-community-release-el7-11.noarch.rpm
       - mysql-community-client
       - git
     use_backend: yum
@@ -33,6 +38,12 @@
   set_fact:
     release_path: "{{ project_path }}/releases/{{ lookup('pipe','date +%Y%m%d%H%M%S') }}"
     current_path: "{{ project_path }}/current"
+
+# - name: Adding the path in the Profile files
+#   lineinfile: dest=/root/.bash_profile line='export RDS_ENDPOINT={{ rds_endpoint }}' insertafter='EOF' regexp='export RDS_ENDPOINT={{ rds_endpoint }}' state=present
+ 
+# - name: Source the bash_profile file
+#   shell: source /root/.bash_profile
 
 - name: Create project path directory if it does not exist
   file:
@@ -74,7 +85,7 @@
   ignore_errors: yes
 
 - name: Start pm2
-  command: pm2 start {{ current_path }}/src/app.js --name node-app
+  command: pm2 start {{ current_path }}/src/app.js --name node-app -- {{ rds_endpoint }}
 
 - name: Delete old dir
   shell: rm -rf {{ current_release_path.stdout }}/
