@@ -19,10 +19,17 @@ resource "aws_db_instance" "default" {
     instance_class          = "db.t2.micro"
     name                    = "clientsdb"
     username                = "admindb"
-    password                = "a1s2d3f4"
+    password                = var.database_password
     parameter_group_name    = "default.mysql5.7"
     availability_zone       = module.vpc.azs[0]
     vpc_security_group_ids  = [module.db_sg.this_security_group_id]
     db_subnet_group_name    = aws_db_subnet_group.us-east-1a-private.name
     skip_final_snapshot     = "true"
 }
+
+# resource "null_resource" "setup_db" {
+#   depends_on = ["aws_db_instance.default"]
+#   provisioner "local-exec" {
+#     command = "mysql -u ${aws_db_instance.default.username} -p${var.database_password} -h ${aws_db_instance.default.address} < file.sql"
+#   }
+# }

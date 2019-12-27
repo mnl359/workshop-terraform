@@ -65,3 +65,8 @@ variable "private_subnet_cidr_b" {
     description     = "CIDR for the Private Subnet B"
     default         = "10.20.8.0/24"
 }
+
+variable "database_password" {
+    description     = "Database password."
+    default         = "a1s2d3f4"
+}
