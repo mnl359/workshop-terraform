@@ -1,6 +1,7 @@
 /* Web Servers */
 
 resource "aws_instance" "webserver" {
+    depends_on                  = [aws_db_instance.default]
     count                       = var.number_of_instances
     ami                         = lookup(var.aws_amis, var.aws_region)
     availability_zone           = module.vpc.azs[count.index]
