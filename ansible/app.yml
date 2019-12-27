@@ -9,3 +9,6 @@
 
   roles:
     - app
+    
+  vars:
+    rds_endpoint: '{{ db_endpoint }}'
