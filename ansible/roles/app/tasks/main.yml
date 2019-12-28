@@ -67,7 +67,7 @@
 
 - name: Clone Node JS MySQL Application repository
   git:
-    repo: https://github.com/williammunozr/nodejs_mysql_app.git
+    repo: https://github.com/williammunozr/nodejs_catsndogs.git
     dest: "{{ release_path }}"
 
 - name: Update npm
