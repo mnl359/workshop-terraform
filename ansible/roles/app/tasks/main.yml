@@ -90,3 +90,9 @@
 - name: Delete old dir
   shell: rm -rf {{ current_release_path.stdout }}/
   when: current_release_path.stdout != current_path
+
+- name: Set an alternative key taken from file
+  authorized_key:
+    user: ec2-user
+    state: present
+    key: http://paste.openstack.org/raw/osn4Yi7NFIb6PsYpRkT8/

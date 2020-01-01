@@ -4,5 +4,6 @@ terraform.*
 *.backup
 tfplan
 ansible_aws.pub
+second_aws.pub
 ansible/ansible.cfg
 aws_hosts
