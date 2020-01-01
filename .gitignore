@@ -5,5 +5,4 @@ terraform.*
 tfplan
 ansible_aws.pub
 ansible/ansible.cfg
-ansible.cfg
 aws_hosts
