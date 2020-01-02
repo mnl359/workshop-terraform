@@ -8,13 +8,13 @@ module "web_sg" {
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_cidr_blocks = [
-    {
-      from_port   = 443
-      to_port     = 443
-      protocol    = "tcp"
-      description = "HTTPS ports"
-      cidr_blocks = "0.0.0.0/0"
-    },
+    # {
+    #   from_port   = 443
+    #   to_port     = 443
+    #   protocol    = "tcp"
+    #   description = "HTTPS ports"
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
     {
       from_port   = 22
       to_port     = 22
@@ -22,13 +22,13 @@ module "web_sg" {
       description = "SSH ports"
       cidr_blocks = "0.0.0.0/0"
     },
-    {
-      from_port   = -1
-      to_port     = -1
-      protocol    = "icmp"
-      description = "Allow ICMP"
-      cidr_blocks = "0.0.0.0/0"
-    },
+    # {
+    #   from_port   = -1
+    #   to_port     = -1
+    #   protocol    = "icmp"
+    #   description = "Allow ICMP"
+    #   cidr_blocks = "0.0.0.0/0"
+    # },
   ]
 
   # This is to prevent direct access from internet to the instances
@@ -129,20 +129,20 @@ module "db_sg" {
       security_groups = module.web_sg.this_security_group_id
       cidr_blocks = module.vpc.vpc_cidr_block
     },
-    {
-      from_port   = 22
-      to_port     = 22
-      protocol    = "tcp"
-      description = "SSH ports"
-      cidr_blocks = module.vpc.vpc_cidr_block
-    },
-    {
-      from_port   = -1
-      to_port     = -1
-      protocol    = "icmp"
-      description = "Allow ICMP"
-      cidr_blocks = module.vpc.vpc_cidr_block
-    },
+    # {
+    #   from_port   = 22
+    #   to_port     = 22
+    #   protocol    = "tcp"
+    #   description = "SSH ports"
+    #   cidr_blocks = module.vpc.vpc_cidr_block
+    # },
+    # {
+    #   from_port   = -1
+    #   to_port     = -1
+    #   protocol    = "icmp"
+    #   description = "Allow ICMP"
+    #   cidr_blocks = module.vpc.vpc_cidr_block
+    # },
   ]
 
   egress_with_cidr_blocks = [

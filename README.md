@@ -1,6 +1,6 @@
 # AWS Deployment using Terraform and Ansible
 
-I'm preparing the documentation for this project.
+Many companies are still struggling with IT resources On-Premises
 
 ## Tools used
 
