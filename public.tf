@@ -7,7 +7,7 @@ resource "aws_instance" "webserver" {
     availability_zone           = module.vpc.azs[count.index]
     instance_type               = var.machine_type
     key_name                    = aws_key_pair.admin_key.key_name
-    vpc_security_group_ids      = [module.web_sg.this_security_group_id] # [aws_security_group.web.id]
+    vpc_security_group_ids      = [module.web_sg.this_security_group_id]
     subnet_id                   = module.vpc.public_subnets[count.index]
     associate_public_ip_address = true
     source_dest_check           = false
