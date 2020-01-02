@@ -1,4 +1,4 @@
-# Terraform and Ansible with AWS
+# AWS Deployment using Terraform and Ansible
 
 I'm preparing the documentation for this project.
 
