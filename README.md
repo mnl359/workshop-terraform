@@ -2,7 +2,7 @@
 
 In the following project I would like to show you how to deploy a NodeJS application to AWS cloud provider using Terraform and Ansible. 
 
-I assume that you have an AWS account and that you know the basis administration and configuration. I also assume your workstation is configured with AWS CLI and that you have created an IAM account (user) with full administration permisions to test the instructions described here.
+I assume you have an AWS account and that you know the basis of AWS administration and configuration. I also assume your workstation is configured with AWS CLI and that you have created an IAM account (user) with full administration permisions to test the instructions described here.
 
 These instructions are based on macOS operating system, but I think they will be the same in Linux with some minor changes.
 
@@ -13,7 +13,8 @@ These instructions are based on macOS operating system, but I think they will be
 - ansible 2.9.2
 - GitHub
 - git (git version 2.21.0 (Apple Git-122.2))
-- AWS (under free tier, but it is your responsibility any cost you may incur)
+- SSH
+- AWS (under free tier, but it is your responsibility of any cost you may incur)
 - aws-cli/1.16.230
 - Amazon EC2
 - Amazon Elastic Load Balancing
@@ -30,7 +31,7 @@ The installation of Terraform is quite easy, you just need to download the binar
 - unzip terraform_0.12.18_darwin_amd64.zip
 - sudo mv terraform /usr/local/bin/
 
-To test the binary file, execute the following command:
+To test the binary file, just execute:
 
 ```
 $ terraform --version
@@ -39,7 +40,7 @@ Terraform v0.12.18
 
 ## Python Validation
 
-By default, macOS comes with Python 2.7.x installed, and this document assume you have this version installed and any variation is outside of scope.
+By default, macOS comes with Python 2.7.x installed, and this document assume you have this version and any variation is outside of scope.
 
 To validate your Python version execute the following command:
 
