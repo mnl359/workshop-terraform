@@ -30,9 +30,10 @@ The installation of Terraform is quite easy, you just need to download the binar
 
 To test the binary file, execute the following command:
 
-```$ terraform
+```
+$ terraform
 Terraform v0.12.18
-````
+```
 
 
 
