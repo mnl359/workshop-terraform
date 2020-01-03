@@ -4,7 +4,7 @@ In the following project I would like to show you how to deploy a NodeJS applica
 
 I assume that you have an AWS account and that you know the basis administration and configuration. I also assume your workstation is configured with AWS CLI and that you have created an IAM account (user) with full administration permisions to test the instructions described here.
 
-The instructions described here are based on macOS operating system, but I think they are the same in Linux with some minor changes.
+These instructions are based on macOS operating system, but I think they will be the same in Linux with some minor changes.
 
 ## Tools and services we need to deploy the application
 
