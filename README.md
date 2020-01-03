@@ -21,7 +21,7 @@ These instructions are based on macOS operating system, but I think they will be
 - Amazon Virtual Private Cloud (VPC)
 - Amazon RDS for MySQL
 
-## Terraform installation and configuration
+## Terraform installation
 
 Assuming you have AWS CLI configured in your workstation and you are able to create resources with it, the next step is to install Terraform.
 
@@ -40,7 +40,7 @@ Terraform v0.12.18
 
 ## Python Validation
 
-By default, macOS comes with Python 2.7.x installed, and this document assume you have this version and any variation is outside of scope.
+By default, macOS comes with Python 2.7.x installed. This document assumes you have this version and any variation is outside of scope.
 
 To validate your Python version execute the following command:
 
@@ -51,7 +51,7 @@ Python 2.7.16
 
 ## Ansible installation
 
-The installation of Ansible is straightforward. We just need to install the Python package manager (pip) and then install Ansible.
+The installation of Ansible is straightforward. We just need to install the Python package manager (pip), if it is not already installed, and then install Ansible.
 
 Execute the following commands to install pip and Ansible:
 
