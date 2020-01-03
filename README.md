@@ -88,6 +88,8 @@ $ cd terraform-ansible-aws-catsndogs
 $ terraform-ansible-aws-catsndogs git:(master)
 ```
 
+If you forked my repository and want to use yours, just change the URL in the command above.
+
 
 
 
