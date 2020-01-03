@@ -12,6 +12,7 @@ These instructions are based on macOS operating system, but I think they will be
 - Python 2.7.16
 - ansible 2.9.2
 - AWS (under free tier, but it is your responsibility any cost you may incur)
+- aws-cli/1.16.230 Python/3.7.5 Darwin/19.2.0 botocore/1.12.220
 - Amazon EC2
 - Amazon Elastic Load Balancing
 - Amazon Virtual Private Cloud (VPC)
