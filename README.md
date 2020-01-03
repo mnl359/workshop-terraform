@@ -8,14 +8,14 @@ These instructions are based on macOS operating system, but I think they will be
 
 ## Tools and services we need to deploy the application
 
-- Terraform v0.12.18
-- Python 2.7.16
-- ansible 2.9.2
+- Terraform
+- Python
+- Ansible
 - GitHub
-- git (git version 2.21.0 (Apple Git-122.2))
+- Git
 - SSH
 - AWS (under free tier, but it is your responsibility of any cost you may incur)
-- aws-cli/1.16.230
+- AWS CLI
 - Amazon EC2
 - Amazon Elastic Load Balancing
 - Amazon Virtual Private Cloud (VPC)
