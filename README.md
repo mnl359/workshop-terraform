@@ -21,3 +21,18 @@ These instructions are based on macOS operating system, but I think they will be
 ## Terraform installation and configuration
 
 Assuming you have AWS CLI configured in your workstation and you are able to create resources with it, the next step is to install Terraform.
+
+The installation of Terraform is quite easy, you just need to download the binary file, unzip it and move it to a standard binary location in macOS.
+
+- wget https://releases.hashicorp.com/terraform/0.12.18/terraform_0.12.18_darwin_amd64.zip
+- unzip terraform_0.12.18_darwin_amd64.zip
+- sudo mv terraform /usr/local/bin/
+
+To test the binary file, execute the following command:
+
+```$ terraform
+Terraform v0.12.18
+````
+
+
+
