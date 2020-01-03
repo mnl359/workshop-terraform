@@ -49,6 +49,30 @@ $ python --version
 Python 2.7.16
 ```
 
+## Ansible installation
+
+The installation of Ansible is straightforward. We just need to install the Python package manager (pip) and then install Ansible.
+
+Execute the following commands to install pip and Ansible:
+
+```
+$ curl https://bootstrap.pypa.io/get-pip.py -o get-pip.py
+$ python get-pip.py --user
+$ pip install --user ansible
+```
+
+In order to test the ansible installation you have to restart your terminal.
+
+To validate you Ansible installation exeute the following command:
+
+```
+$ ansible --version
+ansible 2.9.2
+...
+```
+
+You will get an extra information about the Ansible environment.
+
 
 
 
