@@ -80,7 +80,7 @@ You don't need to create a GitHub account to test this project, but I suggest yo
 - https://github.com/williammunozr/terraform-ansible-aws-catsndogs
 - https://github.com/williammunozr/nodejs_catsndogs.git
 
-Even if you fork my repositories or don't, you will need a copy at least of the Terraform one. Assuming you have git command installed, execute the following command:
+Even if you fork my repositories or don't, you will need a copy at least the Terraform one. Assuming you have git command installed, execute the following command:
 
 ```
 $ git clone https://github.com/williammunozr/terraform-ansible-aws-catsndogs
