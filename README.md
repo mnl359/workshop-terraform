@@ -13,7 +13,7 @@ These instructions are based on macOS operating system, but I think they will be
 - Ansible
 - GitHub
 - Git
-- SSH
+- SSH and OpenSSL
 - AWS (under free tier, but it is your responsibility of any cost you may incur)
 - AWS CLI
 - Amazon EC2
@@ -89,6 +89,14 @@ $ terraform-ansible-aws-catsndogs git:(master)
 ```
 
 If you forked my repository and want to use yours, just change the URL in the command above.
+
+## SSH and OpenSSL
+
+In order to access an AWS instance we need to provide (create) a SSH Key in the Terraform deployment process and that key is also required by Ansible in the configuration management process. That's why we need to create a SSH Key, process that we're going to accomplish in this section.
+
+In a Unix-like operating system the default location for the SSH keys is the .ssh directory within the current user's home directory. For simplicity of this ...
+
+
 
 
 
