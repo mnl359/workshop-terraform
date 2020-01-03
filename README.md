@@ -1,4 +1,4 @@
-# AWS Deployment using Terraform and Ansible
+# AWS Application Deployment using Terraform and Ansible
 
 In the following project I would like to show you how to deploy a NodeJS application to AWS cloud provider using Terraform and Ansible. 
 
