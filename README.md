@@ -73,6 +73,21 @@ ansible 2.9.2
 
 You will get an extra information about the Ansible environment.
 
+## GitHub
+
+You don't need to create a GitHub account to test this project, but I suggest you to create one and fork the following repositores:
+
+- https://github.com/williammunozr/terraform-ansible-aws-catsndogs
+- https://github.com/williammunozr/nodejs_catsndogs.git
+
+Even if you fork my repositories or don't, you will need a copy at least of the Terraform one. Assuming you have git command installed, exeute the following command:
+
+```
+$ git clone https://github.com/williammunozr/terraform-ansible-aws-catsndogs
+$ cd terraform-ansible-aws-catsndogs 
+$ terraform-ansible-aws-catsndogs git:(master)
+```
+
 
 
 
