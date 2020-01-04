@@ -172,7 +172,7 @@ $ terraform destroy -auto-approve
 
 This project is not production ready, it has some weaknesses in its design, for example, it is tightly bound with `us-east-1` region, it must be configured to work dynamically in any region. It doesn't have auto-scaling, if I need to scale the number of instances I have to change that number in the configuration and execute the project again, it is a manual process.
 
-This project was intended to show I have some abilities. But if I have to do the same project for a production ready deployment I definitely select Kubernetes, it is strong and easier to work with.
+This project was intended to show I have some abilities. But if I have to do the same project for a production ready deployment I definitely suggest Kubernetes, it is strong and easier to work with.
 
 Some things that you can improve in the current project:
 
@@ -180,7 +180,7 @@ Some things that you can improve in the current project:
 - Create an EC2 image with all the configuration needed and the application deployed
 - With the Ec2 image in hand you don't need Ansible (perfect, less things to install)
 - With the EC2 image ready, you can implement an auto-scaling solution, based in CPU and Memory (cool!)
-- With the above changes you can implement a CI/CD pipeline that react to changes on IaC GitHub or NodeJS repositories (With CircleCI, awesome!)
+- With the above changes you can implement a CI/CD pipeline that react to changes on IaC Terraform or NodeJS repositories (With CircleCI, awesome!)
 - You don't need SSH Keys to access the EC2 Instances (a more secure system)
 - Now, you can implement a Blue/Green or Canary deployment easier
 
