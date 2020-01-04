@@ -113,6 +113,23 @@ private_key_file = /Users/williammr/.ssh/ansible_aws
 
 If you change the name of the SSH key (ansible_aws) for something different, you have to adjust the project accordingly. Also be careful to ignore this file in the .gitignore file, just put the name of the file you want git doesn't track.
 
+## AWS CLI
+
+The installation of the AWS CLI is also very straightforward, you just need to execute a pip command.
+
+```
+$ pip install awscli --upgrade --user
+```
+
+To validate the AWS CLI installation restart your terminal and execute the following command:
+
+```
+aws --version
+```
+
+The configuration of AWS CLI is outside of scope in this project. An important thing to bear in mind is that in this project we are working in `us-east-1` region. To accomplish the configuration of AWS CLI follow the instructions in the documentation.
+
+- https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
 
 
 
