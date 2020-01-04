@@ -40,7 +40,7 @@ Terraform v0.12.18
 
 ## Python Validation
 
-By default, macOS comes with Python 2.7.x installed. This document assumes you have this version and any variation is outside of scope.
+By default, macOS comes with Python 2.7.x installed. This document assumes you have this version and any variation is outside of the scope.
 
 To validate your Python version execute the following command:
 
@@ -127,10 +127,29 @@ To validate the AWS CLI installation restart your terminal and execute the follo
 aws --version
 ```
 
-The configuration of AWS CLI is outside of scope in this project. An important thing to bear in mind is that in this project we are working in `us-east-1` region. To accomplish the configuration of AWS CLI follow the instructions in the documentation.
+The configuration of AWS CLI is outside of the scope in this project. An important thing to bear in mind is that in this project we are working in `us-east-1` region. To accomplish the configuration of AWS CLI follow the instructions in the documentation.
 
 - https://docs.aws.amazon.com/cli/latest/userguide/cli-chap-configure.html
 
+
+## We are ready to go
+
+If you have all the above steps completed and without issues, you are ready to test the project. The project starts with the execution of Terraform commands. In a nutshell it validates that you have AWS CLI configured, download all the necessary modules, execute the deployment to AWS and launch the Ansible configuration management process. 
+
+To proceed with the execution of the project, in the first time, execute the following:
+
+```
+$ terraform init
+$ terraform plan
+$ terraform apply -auto-approve
+```
+
+To test your application do the following:
+
+- Get in AWS console
+- Navigate to EC2 
+- Scroll down to Load Balancers
+- Select the one named "terraform-ansible-alb"
 
 
 
