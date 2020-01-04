@@ -170,7 +170,7 @@ $ terraform destroy -auto-approve
 
 # Side Notes
 
-This project is not production ready, it has some weaknesses in its design, for example, it is tightly bound with `us-east-1' region, it must be configured to work dynamically in any region. It doesn't have auto-scaling, if I need to scale the number of instances I have to change that number in the configuration and execute the project again, it is a manual process.
+This project is not production ready, it has some weaknesses in its design, for example, it is tightly bound with `us-east-1` region, it must be configured to work dynamically in any region. It doesn't have auto-scaling, if I need to scale the number of instances I have to change that number in the configuration and execute the project again, it is a manual process.
 
 This project was intended to show I have some abilities. But if I have to do the same project for a production ready deployment I definitely select Kubernetes, it is strong and easier to work with.
 
