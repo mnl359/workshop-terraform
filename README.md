@@ -182,7 +182,7 @@ Some things that you can improve in the current project:
 - With the EC2 image ready, you can implement an auto-scaling solution, based in CPU and Memory (cool!)
 - With the above changes you can implement a CI/CD pipeline that react to changes on IaC GitHub or NodeJS repositories (With CircleCI, awesome!)
 - You don't need SSH Keys to access the EC2 Instances (a more secure system)
-- Now, you can implemente a Blue/Green or Canary deployment easier
+- Now, you can implement a Blue/Green or Canary deployment easier
 
 - Finally, use Kubernetes.
 
