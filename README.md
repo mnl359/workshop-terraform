@@ -98,7 +98,7 @@ In a Unix-like operating system the default location for the SSH keys is the .ss
 
 ```
 $ ssh-keygen -t rsa -b 4096 -f ~/.ssh/ansible_aws
-For simplicity, accept the default values and just press enter.
+For simplicity, press enter to accept the default values.
 ```
 
 Our last step in this section is to copy the public SSH key file to the root directory of the project and set the value of the variable named `private_key_file` in the ansible.cfg file to the full path of the private SSH key.
