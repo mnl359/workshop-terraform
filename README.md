@@ -63,7 +63,7 @@ $ pip install --user ansible
 
 In order to test the ansible installation you have to restart your terminal.
 
-To validate you Ansible installation exeute the following command:
+To validate your Ansible installation exeute the following command:
 
 ```
 $ ansible --version
@@ -178,7 +178,7 @@ Some things that you can improve in the current project:
 
 - Configure the project's region to work dynamically
 - Create an EC2 image with all the configuration needed and the application deployed
-- With the Ec2 image in hand you don't need Ansible (perfect, less things to install)
+- With the EC2 image in hand you don't need Ansible (perfect, less things to install)
 - With the EC2 image ready, you can implement an auto-scaling solution, based in CPU and Memory metrics (cool!)
 - With the above changes you can implement a CI/CD pipeline that react to changes on IaC Terraform or NodeJS repositories (With CircleCI, awesome!)
 - You don't need SSH Keys to access the EC2 Instances (a more secure system)
