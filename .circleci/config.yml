@@ -67,6 +67,7 @@ jobs:
       - run:
           name: ansible deployment
           command: |
+            sudo apt install python3-pip
             pip install ansible
             ansible-playbook --version
   destroy_app:
