@@ -23,12 +23,7 @@ jobs:
       - checkout
       - run: 
           name: init
-          command: |
-            export AWS_ACCESS_KEY_ID=$AWS_ACCESS_KEY_ID
-            export AWS_DEFAULT_REGION=$AWS_DEFAULT_REGION
-            export AWS_SECRET_ACCESS_KEY=$AWS_SECRET_ACCESS_KEY
-            echo $AWS_DEFAULT_REGION
-            terraform init -input=false
+          command: terraform init -input=false
       - persist_to_workspace:
           root: ~/repo
           paths: .
