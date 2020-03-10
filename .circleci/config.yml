@@ -1,8 +1,5 @@
 version: 2.1
 
-orbs:
-  ansible-playbook: orbss/ansible-playbook@0.0.1
-
 terraform: &terraform
   working_directory: ~/repo
   docker:
@@ -13,13 +10,10 @@ terraform: &terraform
     TF_VAR_AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
     TF_VAR_AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
 
-# To use with Ansible
-awscli: &awscli
+ansible: &ansible
   working_directory: ~/repo
   docker:
-    - image: hachikoapp/awscli:1.0.0
-  environment:
-    TF_IN_AUTOMATION: true
+    - image: circleci/python:3.8.2
 
 jobs:
   init:
@@ -66,13 +60,15 @@ jobs:
           path: ~/repo/tfresult
           destination: tfresult  
   ansible_deployment:
-    <<: *terraform
+    <<: *ansible
     steps:
       - attach_workspace:
           at: ~/repo
       - run:
           name: ansible deployment
-          command: ansible-playbook --version
+          command: |
+            pip install ansible
+            ansible-playbook --version
   destroy_app:
     <<: *terraform
     steps:
