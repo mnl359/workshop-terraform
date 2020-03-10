@@ -1,0 +1,85 @@
+version: 2
+
+terraform: &terraform
+  working_directory: ~/repo
+  docker:
+    - image: hashicorp/terraform:0.12.21
+  environment:
+    TF_IN_AUTOMATION: true
+  context: aws
+
+awscli: &awscli
+  working_directory: ~/repo
+  docker:
+    - image: hachikoapp/awscli:1.0.0
+  environment:
+    TF_IN_AUTOMATION: true
+  context: aws
+
+jobs:
+  init:
+    <<: *terraform
+    steps:
+      - checkout
+      - run: 
+          name: init
+          command: terraform init -input=false
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .
+  plan:
+    <<: *terraform   
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: plan
+          command: terraform plan
+      - store_artifacts:
+          path: ~/repo/tfplan
+          destination: tfplan
+      - persist_to_workspace:
+          root: ~/repo
+          paths: .          
+  apply:
+    <<: *terraform
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: apply
+          command: terraform apply -auto-approve 
+      - run:
+          name: show
+          command: terraform show -no-color > tfresult
+      - store_artifacts:
+          path: ~/repo/tfresult
+          destination: tfresult  
+  destroy_app:
+    <<: *terraform
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: destroy app
+          command: terraform destroy -auto-approve
+workflows:
+  version: 2
+  build_deploy:
+    jobs:
+      - init
+      - plan:
+          requires:
+            - init
+      - apply:
+          requires:
+            - plan
+          filters:
+            branches:
+              only: 
+                - master
+      - destroy_app:
+          filters:
+            branches:
+              only:
+                - destroy
