@@ -11,6 +11,7 @@ terraform: &terraform
     AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
     AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
 
+# To use with Ansible
 awscli: &awscli
   working_directory: ~/repo
   docker:
