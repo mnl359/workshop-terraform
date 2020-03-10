@@ -37,7 +37,7 @@ jobs:
       - run:
           name: ssh-keygen
           command: |
-            ssh-keygen -t rsa -b 4096 -N '' -f ~/.ssh/ansible_aws <<< y
+            ssh-keygen -t rsa -b 4096 -N '' -f ~/.ssh/ansible_aws
             cp -p ~/.ssh/ansible_aws.pub .
       - run:
           name: plan
