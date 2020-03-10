@@ -65,6 +65,13 @@ jobs:
       - store_artifacts:
           path: ~/repo/tfresult
           destination: tfresult  
+  ansible_deployment:
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: ansible deployment
+          command: ansible-playbook --version
   destroy_app:
     <<: *terraform
     steps:
@@ -87,6 +94,13 @@ workflows:
           filters:
             branches:
               only: 
+                - master
+      - ansible_deployment:
+          requires:
+            - apply
+          filters:
+            branches:
+              only:
                 - master
       - destroy_app:
           filters:
