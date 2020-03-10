@@ -22,8 +22,8 @@ jobs:
       - checkout
       - run: 
           name: init
-          context: aws
           command: terraform init
+          context: aws
       - persist_to_workspace:
           root: ~/repo
           paths: .
