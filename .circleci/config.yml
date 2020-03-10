@@ -4,7 +4,6 @@ terraform: &terraform
   working_directory: ~/repo
   docker:
     - image: hashicorp/terraform:0.12.21
-  context: aws
   environment:
     TF_IN_AUTOMATION: true
 
@@ -24,6 +23,7 @@ jobs:
       - run: 
           name: init
           command: terraform init -input=false
+          context: aws
       - persist_to_workspace:
           root: ~/repo
           paths: .
