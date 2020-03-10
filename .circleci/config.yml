@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  ansible: orbss/ansible@0.2.3
+  ansible-playbook: orbss/ansible-playbook@0.0.1
 
 terraform: &terraform
   working_directory: ~/repo
@@ -61,19 +61,18 @@ jobs:
           command: terraform apply -auto-approve 
       - run:
           name: show
-          command: |
-            ansible-playbook --version
-            terraform show -no-color > tfresult
+          command: terraform show -no-color > tfresult
       - store_artifacts:
           path: ~/repo/tfresult
           destination: tfresult  
-  # ansible_deployment:
-  #   steps:
-  #     - attach_workspace:
-  #         at: ~/repo
-  #     - run:
-  #         name: ansible deployment
-  #         command: ansible-playbook --version
+  ansible_deployment:
+    <<: *terraform
+    steps:
+      - attach_workspace:
+          at: ~/repo
+      - run:
+          name: ansible deployment
+          command: ansible-playbook --version
   destroy_app:
     <<: *terraform
     steps:
@@ -97,13 +96,13 @@ workflows:
             branches:
               only: 
                 - master
-      # - ansible_deployment:
-      #     requires:
-      #       - apply
-      #     filters:
-      #       branches:
-      #         only:
-      #           - master
+      - ansible_deployment:
+          requires:
+            - apply
+          filters:
+            branches:
+              only:
+                - master
       - destroy_app:
           filters:
             branches:
