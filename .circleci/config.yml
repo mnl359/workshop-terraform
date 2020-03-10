@@ -60,7 +60,7 @@ jobs:
           path: ~/repo/tfresult
           destination: tfresult  
   ansible_deployment:
-    <<: *ansible
+    <<: *terraform
     steps:
       - attach_workspace:
           at: ~/repo
