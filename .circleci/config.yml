@@ -1,5 +1,8 @@
 version: 2.1
 
+orbs:
+  ansible: orbss/ansible@0.2.3
+
 terraform: &terraform
   working_directory: ~/repo
   docker:
