@@ -4,17 +4,20 @@ terraform: &terraform
   working_directory: ~/repo
   docker:
     - image: hashicorp/terraform:0.12.21
+  context: aws
   environment:
     TF_IN_AUTOMATION: true
-  context: aws
+    AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
+    AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
+    AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
 
 awscli: &awscli
   working_directory: ~/repo
   docker:
     - image: hachikoapp/awscli:1.0.0
+  context: aws
   environment:
     TF_IN_AUTOMATION: true
-  context: aws
 
 jobs:
   init:
