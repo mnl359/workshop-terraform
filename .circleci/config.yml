@@ -6,16 +6,12 @@ terraform: &terraform
     - image: hashicorp/terraform:0.12.21
   environment:
     TF_IN_AUTOMATION: true
-    AWS_ACCESS_KEY_ID: AWS_ACCESS_KEY_ID
-    AWS_DEFAULT_REGION: AWS_DEFAULT_REGION
-    AWS_SECRET_ACCESS_KEY: AWS_SECRET_ACCESS_KEY
 
 # To use with Ansible
 awscli: &awscli
   working_directory: ~/repo
   docker:
     - image: hachikoapp/awscli:1.0.0
-  context: aws
   environment:
     TF_IN_AUTOMATION: true
 
@@ -27,7 +23,6 @@ jobs:
       - run: 
           name: init
           command: terraform init -input=false
-          context: aws
       - persist_to_workspace:
           root: ~/repo
           paths: .
@@ -71,7 +66,8 @@ workflows:
   version: 2
   build_deploy:
     jobs:
-      - init
+      - init:
+        context: aws
       - plan:
           requires:
             - init
