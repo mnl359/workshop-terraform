@@ -60,16 +60,18 @@ jobs:
           path: ~/repo/tfresult
           destination: tfresult  
   ansible_deployment:
-    <<: *terraform
+    <<: *ansible
     steps:
       - attach_workspace:
           at: ~/repo
       - run:
           name: ansible deployment
           command: |
-            python3 --version
-            # pip install ansible
-            # ansible-playbook --version
+            pip install ansible
+            wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
+            unzip terraform_0.12.21_linux_amd64.zip
+            ./terraform --version
+            ansible-playbook --version
   destroy_app:
     <<: *terraform
     steps:
