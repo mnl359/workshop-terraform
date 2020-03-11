@@ -64,11 +64,13 @@ jobs:
     steps:
       - attach_workspace:
           at: ~/repo
-      - run: 
-          name: private ssh key
-          command: |
-            echo $ANSIBLE_AWS > ansible_aws
-            chmod 600 ansible_aws
+      - add_ssh_keys: 
+          fingerprints:
+            - "45:d9:07:ae:57:59:ba:37:f3:12:06:61:5c:bd:92:a4"
+          # name: private ssh key
+          # command: |
+          #   echo $ANSIBLE_AWS > ansible_aws
+          #   chmod 600 ansible_aws
       - run:
           name: ansible deployment
           command: |

@@ -43,7 +43,7 @@ variable "ssh_private_key" {
 
 variable "ssh_public_key" {
     description     = "Public Key for Terraform-Ansible Project"
-    default         = "ansible_aws.pub"
+    default         = "aws_ansible.pub"
 }
 
 variable "vpc_cidr" {
