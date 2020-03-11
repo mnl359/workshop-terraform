@@ -68,9 +68,9 @@ jobs:
           name: ansible deployment
           command: |
             pip install ansible
+            pip install boto
             wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
             unzip terraform_0.12.21_linux_amd64.zip
-            ./terraform output db_instance_address
             ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(./terraform output db_instance_address)
   destroy_app:
     <<: *terraform
