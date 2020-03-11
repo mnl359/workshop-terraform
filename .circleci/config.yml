@@ -2,6 +2,8 @@ version: 2.1
 
 terraform: &terraform
   working_directory: ~/repo
+  machine:
+    docker_layer_caching: true
   docker:
     - image: hashicorp/terraform:0.12.21
   environment:
@@ -67,7 +69,7 @@ jobs:
       - run:
           name: ansible deployment
           command: |
-            python --version
+            python3 --version
             # pip install ansible
             # ansible-playbook --version
   destroy_app:
