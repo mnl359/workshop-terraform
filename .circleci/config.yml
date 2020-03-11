@@ -26,16 +26,12 @@ jobs:
       - persist_to_workspace:
           root: ~/repo
           paths: .
+
   plan:
     <<: *terraform   
     steps:
       - attach_workspace:
           at: ~/repo
-      # - run:
-      #     name: ssh-keygen
-      #     command: |
-      #       ssh-keygen -t rsa -b 4096 -N '' -f ~/.ssh/ansible_aws
-      #       cp -p ~/.ssh/ansible_aws.pub .
       - run:
           name: plan
           command: terraform plan
@@ -44,7 +40,8 @@ jobs:
           destination: tfplan
       - persist_to_workspace:
           root: ~/repo
-          paths: .          
+          paths: .    
+
   apply:
     <<: *terraform
     steps:
@@ -59,6 +56,7 @@ jobs:
       - store_artifacts:
           path: ~/repo/tfresult
           destination: tfresult  
+
   ansible_deployment:
     <<: *ansible
     steps:
@@ -67,10 +65,6 @@ jobs:
       - add_ssh_keys: 
           fingerprints:
             - "45:d9:07:ae:57:59:ba:37:f3:12:06:61:5c:bd:92:a4"
-          # name: private ssh key
-          # command: |
-          #   echo $ANSIBLE_AWS > ansible_aws
-          #   chmod 600 ansible_aws
       - run:
           name: ansible deployment
           command: |
@@ -79,6 +73,7 @@ jobs:
             wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
             unzip terraform_0.12.21_linux_amd64.zip
             ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(./terraform output db_instance_address)
+
   destroy_app:
     <<: *terraform
     steps:
@@ -87,6 +82,7 @@ jobs:
       - run:
           name: destroy app
           command: terraform destroy -auto-approve
+          
 workflows:
   version: 2
   build_deploy:
