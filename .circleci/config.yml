@@ -74,7 +74,7 @@ jobs:
             unzip terraform_0.12.21_linux_amd64.zip
             ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(./terraform output db_instance_address)
 
-  destroy_app:
+  destroy:
     <<: *terraform
     steps:
       - attach_workspace:
@@ -105,7 +105,7 @@ workflows:
             branches:
               only:
                 - master
-      - destroy_app:
+      - destroy:
           requires:
             - plan
           filters:
