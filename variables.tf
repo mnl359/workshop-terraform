@@ -23,7 +23,7 @@ variable "aws_amis" {
 
 variable "machine_type" {
     description     = "Cloud Machine Type"
-    default         = "t2.small"
+    default         = "t2.micro"
 }
 
 variable "number_of_instances" {
