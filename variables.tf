@@ -13,6 +13,19 @@ variable "availability_zone_b" {
     default         = "us-east-1b"
 }
 
+variable "vpc_cidr" {
+    description     = "CIDR for the whole VPC"
+    default         = "10.20.0.0/16"
+}
+
+variable "public_subnet_cidr" {
+    description     = "CIDR for the Public Subnet"
+    default         = "10.20.3.0/24"
+}
+
+##########################
+# EC2 Configuration Init #
+##########################
 variable "aws_amis" {
     description     = "AMIs by Region"
     default = {
@@ -21,7 +34,7 @@ variable "aws_amis" {
     }
 }
 
-variable "machine_type" {
+variable "ec2_machine_type" {
     description     = "Cloud Machine Type"
     default         = "t2.micro"
 }
@@ -45,15 +58,29 @@ variable "ssh_public_key" {
     description     = "Public Key for Terraform-Ansible Project"
     default         = "aws_ansible.pub"
 }
+# EC2 Configuration End
 
-variable "vpc_cidr" {
-    description     = "CIDR for the whole VPC"
-    default         = "10.20.0.0/16"
+##########################
+# RDS Configuration Init #
+##########################
+variable "rds_instance_class" {
+    description     = "RDS Instance Class"
+    default         = "db.t2.micro"
 }
 
-variable "public_subnet_cidr" {
-    description     = "CIDR for the Public Subnet"
-    default         = "10.20.3.0/24"
+variable "rds_database_name" {
+    description     = "RDS Database Name"
+    default         = "catsndogs"
+}
+
+variable "rds_database_username" {
+    description     = "RDS Database Username"
+    default         = "admindb"
+}
+
+variable "rds_database_password" {
+    description     = "RDS Database Password"
+    default         = "a1s2d3f4"
 }
 
 variable "private_subnet_cidr" {
@@ -65,8 +92,4 @@ variable "private_subnet_cidr_b" {
     description     = "CIDR for the Private Subnet B"
     default         = "10.20.8.0/24"
 }
-
-variable "database_password" {
-    description     = "Database password."
-    default         = "a1s2d3f4"
-}
+# RDS Configuration End
