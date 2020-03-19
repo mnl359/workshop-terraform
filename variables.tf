@@ -46,7 +46,7 @@ variable "number_of_instances" {
 
 variable "key_name" {
     description     = "AWS Key Name"
-    default         = "awslabs"
+    default         = "awscirclecilab"
 }
 
 variable "ssh_private_key" {
