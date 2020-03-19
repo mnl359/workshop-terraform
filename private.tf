@@ -25,4 +25,10 @@ resource "aws_db_instance" "default" {
     vpc_security_group_ids  = [module.db_sg.this_security_group_id]
     db_subnet_group_name    = aws_db_subnet_group.us-east-1a-private.name
     skip_final_snapshot     = "true"
+
+    tags = {
+        Name                = "rds_catsndogs_db"
+        Terraform           = "true"
+        Environment         = "dev"
+    }
 }
