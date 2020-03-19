@@ -1,9 +1,9 @@
 terraform { 
     backend "s3" {
-        bucket          = "terraform-workshop-circleci"
+        bucket          = "a-circleci-terraform-state"
         key             = "terraform-circleci-00/state"
         region          = "us-east-1"
-        dynamodb_table  = "a-circleci-terraform-state"
+        dynamodb_table  = "circleci-terraform-state"
         encrypt         = true
     }
 }
