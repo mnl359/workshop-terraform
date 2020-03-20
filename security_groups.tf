@@ -44,6 +44,7 @@ module "web_sg" {
         Name = "WebServerSG"
         Terraform               = "true"
         Environment             = "dev"
+        Owner                   = "William Munoz"
     }
 }
 
@@ -87,6 +88,7 @@ module "alb_sg" {
         Name        = "ALBSG"
         Terraform   = "true"
         Environment = "dev"
+        Owner       = "William Munoz"
     }
 }
 
@@ -110,6 +112,9 @@ module "db_sg" {
   ]
 
   tags = {
-        Name = "DBServerSG"
+        Name        = "DBServerSG"
+        Terraform   = "true"
+        Environment = "dev"
+        Owner       = "William Munoz"
     }
 }

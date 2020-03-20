@@ -16,6 +16,7 @@ resource "aws_instance" "webserver" {
         Name = "App"
         Terraform               = "true"
         Environment             = "dev"
+        Owner                   = "William Munoz"
     }
 
     # provisioner "local-exec" {

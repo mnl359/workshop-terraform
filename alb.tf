@@ -29,6 +29,7 @@ module "alb" {
   tags = {
     Terraform               = "true"
     Environment             = "dev"
+    Owner                   = "William Munoz"
   }
 }
 

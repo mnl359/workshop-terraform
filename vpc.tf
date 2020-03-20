@@ -20,5 +20,6 @@ module "vpc" {
   tags = {
     Terraform               = "true"
     Environment             = "dev"
+    Owner                   = "William Munoz"
   }
 }
