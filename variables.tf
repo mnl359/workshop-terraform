@@ -22,17 +22,17 @@ locals {
         "${lookup(var.cidr_ab, var.environment)}.3.0/24"
     ]
 
-    database_subnets = {
+    database_subnets = [
         "${lookup(var.cidr_ab, var.environment)}.11.0/24",
         "${lookup(var.cidr_ab, var.environment)}.12.0/24",
         "${lookup(var.cidr_ab, var.environment)}.13.0/24"
-    }
+    ]
 
-    public_subnets = {
+    public_subnets = [
         "${lookup(var.cidr_ab, var.environment)}.64.0/24",
         "${lookup(var.cidr_ab, var.environment)}.65.0/24",
         "${lookup(var.cidr_ab, var.environment)}.66.0/24"
-    }
+    ]
 }
 
 
