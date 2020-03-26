@@ -8,34 +8,38 @@ variable "cidr_ab" {
     }
 }
 
-variable "environment" {
-    description     = "Environment Definition - Options: development, qa, staging, production"
-    default         = "development"
+locals {
+  cidr_c_private_subnets    = 1
+  cidr_c_database_subnets   = 11
+  cidr_c_public_subnets     = 64
 }
 
 locals {
     availability_zones  = data.aws_availability_zones.available.names
 }
 
+
+variable "environment" {
+    description     = "Environment Definition - Options: development, qa, staging, production"
+    default         = "development"
+}
+
 /* Subnets */
 
 locals {
     private_subnets = [
-        "${lookup(var.cidr_ab, var.environment)}.1.0/24",
-        "${lookup(var.cidr_ab, var.environment)}.2.0/24",
-        "${lookup(var.cidr_ab, var.environment)}.3.0/24"
+        for az in local.availability_zones :
+            "${lookup(var.cidr_ab, var.environment)}.${local.cidr_c_private_subnets + index(local.availability_zones, az)}.0/24"
     ]
 
     database_subnets = [
-        "${lookup(var.cidr_ab, var.environment)}.11.0/24",
-        "${lookup(var.cidr_ab, var.environment)}.12.0/24",
-        "${lookup(var.cidr_ab, var.environment)}.13.0/24"
+        for az in local.availability_zones :
+            "${lookup(var.cidr_ab, var.environment)}.${local.cidr_c_database_subnets + index(local.availability_zones, az)}.0/24"
     ]
 
     public_subnets = [
-        "${lookup(var.cidr_ab, var.environment)}.64.0/24",
-        "${lookup(var.cidr_ab, var.environment)}.65.0/24",
-        "${lookup(var.cidr_ab, var.environment)}.66.0/24"
+        for az in local.availability_zones :
+            "${lookup(var.cidr_ab, var.environment)}.${local.cidr_c_public_subnets + index(local.availability_zones, az)}.0/24"
     ]
 }
 
