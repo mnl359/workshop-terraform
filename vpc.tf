@@ -9,6 +9,7 @@ module "vpc" {
   #private_subnets           = ["10.0.1.0/24", "10.0.2.0/24", "10.0.3.0/24"]
   #public_subnets            = ["10.0.101.0/24", "10.0.102.0/24", "10.0.103.0/24"]
   #database_subnets          = ["10.0.201.0/24", "10.0.202.0/24"]
+  # Working with local variables
   private_subnets           = local.private_subnets
   database_subnets          = local.database_subnets
   public_subnets            = local.public_subnets
