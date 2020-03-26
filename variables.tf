@@ -13,7 +13,11 @@ variable "environment" {
     default         = "development"
 }
 
-/* Private Subnets */
+locals {
+    availability_zones  = data.aws_availability_zones.available.names
+}
+
+/* Subnets */
 
 locals {
     private_subnets = [
@@ -33,6 +37,18 @@ locals {
         "${lookup(var.cidr_ab, var.environment)}.65.0/24",
         "${lookup(var.cidr_ab, var.environment)}.66.0/24"
     ]
+}
+
+# Subnets per availability zone
+
+variable "region" {
+    type            = map(string)
+    default         = {
+        "development"   = "us-east-1"
+        "qa"            = "us-east-1"
+        "staging"       = "us-east-2"
+        "production"    = "us-east-2"
+    }
 }
 
 
