@@ -15,7 +15,7 @@ resource "aws_instance" "webserver" {
     tags = {
         Name = "App"
         Terraform               = "true"
-        Environment             = "dev"
+        Environment             = var.environment
         Owner                   = "William Munoz"
     }
 
