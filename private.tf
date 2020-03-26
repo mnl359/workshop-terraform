@@ -7,7 +7,7 @@ resource "aws_db_subnet_group" "us-east-1a-private" {
     tags = {
         Name                = "MySQL DB Subnet Group"
         Terraform           = "true"
-        Environment         = "dev"
+        Environment         = var.environment
         Owner               = "William Munoz"
     }
 }
@@ -30,7 +30,7 @@ resource "aws_db_instance" "default" {
     tags = {
         Name                = "rds_catsndogs_db"
         Terraform           = "true"
-        Environment         = "dev"
+        Environment         = var.environment
         Owner               = "William Munoz"
     }
 }
