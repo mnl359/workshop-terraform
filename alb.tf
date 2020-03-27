@@ -2,8 +2,8 @@ module "alb" {
   source  = "terraform-aws-modules/alb/aws"
   version = "~> 5.0"
   
-  name                              = "terraform-ansible-alb"
-  load_balancer_type                = "application"
+  name                              = var.alb_name
+  load_balancer_type                = var.alb_type
   vpc_id                            = module.vpc.vpc_id
   subnets                           = module.vpc.public_subnets
   security_groups                   = [module.alb_sg.this_security_group_id]
@@ -27,9 +27,12 @@ module "alb" {
   ]
 
   tags = {
-    Terraform               = "true"
+    Name                    = var.alb_name
+    Terraform               = var.is_project_terraformed
     Environment             = var.environment
-    Owner                   = "William Munoz"
+    Owner                   = var.project_owner
+    Email                   = var.project_email
+    Project_Name            = var.project_name
   }
 }
 
