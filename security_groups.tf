@@ -3,8 +3,8 @@
 module "web_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  name        = "web_sg"
-  description = "Allow incoming HTTP connections"
+  name        = var.web_sg_name
+  description = var.web_sg_description
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_cidr_blocks = [
@@ -41,10 +41,12 @@ module "web_sg" {
   ]
 
   tags = {
-        Name = "WebServerSG"
-        Terraform               = "true"
+        Name                    = var.web_sg_name
+        Terraform               = var.is_project_terraformed
         Environment             = var.environment
-        Owner                   = "William Munoz"
+        Owner                   = var.project_owner
+        Email                   = var.project_email
+        Project_Name            = var.project_name
     }
 }
 
@@ -53,8 +55,8 @@ module "web_sg" {
 module "alb_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  name        = "alb_sg"
-  description = "Terraform Ansible ALB Security Group"
+  name        = var.alb_sg_name
+  description = var.alb_sg_description
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_cidr_blocks = [
@@ -85,10 +87,12 @@ module "alb_sg" {
   ]
 
   tags = {
-        Name        = "ALBSG"
-        Terraform   = "true"
-        Environment = var.environment
-        Owner       = "William Munoz"
+        Name          = var.alb_sg_name
+        Terraform     = var.is_project_terraformed
+        Environment   = var.environment
+        Owner         = var.project_owner
+        Email         = var.project_email
+        Project_Name  = var.project_name
     }
 }
 
@@ -97,8 +101,8 @@ module "alb_sg" {
 module "db_sg" {
   source = "terraform-aws-modules/security-group/aws"
 
-  name        = "db_sg"
-  description = "Allow incoming database connections from public web servers."
+  name        = var.db_sg_name
+  description = var.db_sg_description
   vpc_id      = module.vpc.vpc_id
 
   ingress_with_source_security_group_id = [
@@ -112,9 +116,11 @@ module "db_sg" {
   ]
 
   tags = {
-        Name        = "DBServerSG"
-        Terraform   = "true"
+        Name        = var.db_sg_name
+        Terraform   = var.is_project_terraformed
         Environment = var.environment
-        Owner       = "William Munoz"
+        Owner       = var.project_owner
+        Email         = var.project_email
+        Project_Name  = var.project_name
     }
 }
