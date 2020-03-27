@@ -2,6 +2,10 @@
 String credentialsId = 'awsCredentials'
 
 try {
+  environment {
+    PATH = "/var/lib/jenkins/.local/bin:$PATH"
+  }
+  
   stage('checkout') {
     node {
       cleanWs()
