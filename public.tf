@@ -3,7 +3,7 @@
 resource "aws_instance" "webserver" {
     depends_on                  = [aws_db_instance.default]
     count                       = var.number_of_instances
-    ami                         = lookup(var.aws_amis, var.aws_region)
+    ami                         = lookup(var.aws_amis, lookup(var.region, var.environment))
     availability_zone           = module.vpc.azs[count.index]
     instance_type               = var.ec2_machine_type
     key_name                    = aws_key_pair.admin_key.key_name
