@@ -80,6 +80,7 @@ try {
     }
 
     // Run Ansible Deployment
+    // Asumed that Python, Ansible and Boto are installed
     stage('ansible') {
       node {
         withCredentials([[
