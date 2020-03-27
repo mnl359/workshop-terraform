@@ -218,13 +218,15 @@ variable "rds_parameter_group_name" {
     default         = "default.mysql5.7"
 }
 
+/* Application Load Balancer */
 
-#variable "private_subnet_cidr" {
-#    description     = "CIDR for the Private Subnet"
-#    default         = "10.20.7.0/24"
-#}
+variable "alb_name" {
+    description     = "ALB Name"
+    default         = "terraform-ansible-alb"
+}
 
-#variable "private_subnet_cidr_b" {
-#    description     = "CIDR for the Private Subnet B"
-#    default         = "10.20.8.0/24"
-#}
+variable "alb_type" {
+    description     = "ALB Type"
+    default         = "application"
+}
+
