@@ -1,5 +1,6 @@
 // Jenkinsfile
 String credentialsId = 'awsCredentials'
+String sshAnsibleId = 'sshAnsible'
 
 try {
   stage('checkout') {
@@ -84,7 +85,7 @@ try {
           credentialsId: credentialsId,
           accessKeyVariable: 'AWS_ACCESS_KEY_ID',
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
-        ]]) {
+        ],[sshUserPrivateKey(credentialsId: sshAnsibleId, keyFileVariable: 'KEY')]]) {
           ansiColor('xterm') {
             sh 'ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(terraform output db_instance_address)'
           }
