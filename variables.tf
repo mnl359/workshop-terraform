@@ -188,6 +188,37 @@ variable "rds_database_password" {
     default         = "a1s2d3f4"
 }
 
+variable "rds_subnet_group_name" {
+    description     = "RDS Subnet Group Name"
+    default         = "db_private_subnet"
+}
+
+variable "rds_allocated_storage" {
+    description     = "RDS Storage to Allocate"
+    default         = 20  
+}
+
+variable "rds_storage_type" {
+    description     = "RDS Storage Type"
+    default         = "gp2"
+}
+
+variable "rds_engine" {
+    description     = "RDS Engine"
+    default         = "mysql"
+}
+
+variable "rds_engine_version" {
+    description     = "RDS Engine Version"
+    default         = "5.7"
+}
+
+variable "rds_parameter_group_name" {
+    description     = "RDS Parameter Group Name"
+    default         = "default.mysql5.7"
+}
+
+
 #variable "private_subnet_cidr" {
 #    description     = "CIDR for the Private Subnet"
 #    default         = "10.20.7.0/24"
