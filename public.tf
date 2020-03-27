@@ -13,10 +13,12 @@ resource "aws_instance" "webserver" {
     source_dest_check           = false
 
     tags = {
-        Name = "App"
-        Terraform               = "true"
+        Name                    = var.instance_name
+        Terraform               = var.is_project_terraformed
         Environment             = var.environment
-        Owner                   = "William Munoz"
+        Owner                   = var.project_owner
+        Email                   = var.project_email
+        Project_Name            = var.project_name
     }
 
     # provisioner "local-exec" {
@@ -31,6 +33,6 @@ resource "aws_eip" "webserver" {
 }
 
 resource "aws_key_pair" "admin_key" {
-    key_name    = "admin_key"
+    key_name    = var.key_name
     public_key  = file(var.ssh_public_key)
 }

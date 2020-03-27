@@ -125,33 +125,6 @@ variable "db_sg_description" {
 }
 
 
-
-#ariable "aws_region" {
-#    description     = "EC2 Region for the VPC"
-#    default         = "us-east-1"
-#}
-
-#variable "availability_zone" {
-#    description     = "Availability Zone for resources"
-#    default         = "us-east-1a"
-#}
-
-#variable "availability_zone_b" {
-#    description     = "Availability Zone for resources"
-#    default         = "us-east-1b"
-#}
-
-#variable "vpc_cidr" {
-#    description     = "CIDR for the whole VPC"
-#    default         = "10.20.0.0/16"
-#}
-
-#variable "public_subnet_cidr" {
-#    description     = "CIDR for the Public Subnet"
-#    default         = "10.20.3.0/24"
-#}
-
-
 /* EC2 Configuration Init */
 
 variable "aws_amis" {
@@ -184,6 +157,13 @@ variable "ssh_private_key" {
 variable "ssh_public_key" {
     description     = "Public Key for Terraform-Ansible Project"
     default         = "aws_ansible.pub"
+}
+
+/* Instances Tags */
+
+variable "instance_name" {
+    description     = "Tag for the instances name"
+    default         = "App"
 }
 
 /* RDS Configuration Init */
