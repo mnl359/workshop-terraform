@@ -1,3 +1,3 @@
 provider "aws" {
-    region = var.region
+    region = "${lookup(var.region, var.environment)}"
 }
