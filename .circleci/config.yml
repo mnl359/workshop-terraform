@@ -3,7 +3,7 @@ version: 2.1
 terraform: &terraform
   working_directory: ~/repo
   docker:
-    - image: hashicorp/terraform:0.12.21
+    - image: hashicorp/terraform:0.12.24
   environment:
     TF_IN_AUTOMATION: true
     TF_VAR_AWS_ACCESS_KEY_ID: $AWS_ACCESS_KEY_ID
@@ -70,8 +70,8 @@ jobs:
           command: |
             pip install ansible
             pip install boto
-            wget https://releases.hashicorp.com/terraform/0.12.21/terraform_0.12.21_linux_amd64.zip
-            unzip terraform_0.12.21_linux_amd64.zip
+            wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
+            unzip terraform_0.12.24_linux_amd64.zip
             ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(./terraform output db_instance_address)
 
   destroy:
