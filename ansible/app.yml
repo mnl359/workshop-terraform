@@ -3,6 +3,7 @@
 # Playbook for app server
 
 - name: app server
+  wait_for_connection:
   hosts: tag_Name_App #ec2.py dynamic tag
   become: yes
   gather_facts: no
