@@ -87,12 +87,13 @@ try {
           secretKeyVariable: 'AWS_SECRET_ACCESS_KEY'
         ]]) {
           ansiColor('xterm') {
-            sh 'ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(terraform output db_instance_address)'
+            sshagent(credentials: [sshAnsibleId]) {
+              sh 'ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(terraform output db_instance_address)'
+            }
           }
         }
       }
     }
-
   }
 
   if (env.BRANCH_NAME == 'destroy') {
