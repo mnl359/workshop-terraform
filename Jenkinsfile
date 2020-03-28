@@ -134,4 +134,16 @@ finally {
   if (currentBuild.result == 'SUCCESS') {
     currentBuild.result = 'SUCCESS'
   }
+  if ( currentBuild.result == "SUCCESS" ) {
+    slackSend color: "good", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was successful"
+  }
+  else if( currentBuild.result == "FAILURE" ) { 
+    slackSend color: "danger", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was failed"
+  }
+  else if( currentBuild.result == "UNSTABLE" ) { 
+    slackSend color: "warning", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} was unstable"
+  }
+  else {
+    slackSend color: "danger", message: "Job: ${env.JOB_NAME} with buildnumber ${env.BUILD_NUMBER} its result was unclear"	
+  }
 }
