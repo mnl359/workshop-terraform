@@ -96,7 +96,7 @@ try {
   }
 
   if (env.BRANCH_NAME == 'destroy') {
-    stage('ansible') {
+    stage('destroy') {
       node {
         withCredentials([[
           $class: 'AmazonWebServicesCredentialsBinding',
