@@ -92,9 +92,7 @@ try {
               sh 'ssh-agent /bin/bash'
 
               // add private key to ssh-agent, check if private key is successfully added and git clone using the private key
-              sh 'eval $(ssh-agent) && ssh-add ${private_key} && ssh-add -l'
-              
-              sh 'ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(terraform output db_instance_address)'
+              sh 'eval $(ssh-agent) && ssh-add ${private_key} && ssh-add -l && ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(terraform output db_instance_address)'
             }
           }
         }
