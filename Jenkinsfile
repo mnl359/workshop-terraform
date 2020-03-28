@@ -3,6 +3,7 @@ String credentialsId = 'awsCredentials'
 String sshAnsibleId = 'sshAnsible'
 
 try {
+  // Clean the job environment and clone the git project
   stage('checkout') {
     node {
       cleanWs()
@@ -77,7 +78,7 @@ try {
     }
 
     // Run Ansible Deployment
-    // Asumed that Python, Ansible and Boto are installed
+    // Asumed that Python, Ansible and Boto are installed in the Jenkins instance (user)
     stage('ansible') {
       node {
         withCredentials([[
@@ -102,6 +103,8 @@ try {
   }
 
   if (env.BRANCH_NAME == 'destroy') {
+
+    // Run terraform destroy
     stage('destroy') {
       node {
         withCredentials([[
