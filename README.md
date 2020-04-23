@@ -83,6 +83,12 @@ ansible 2.9.2
 
 You will get an extra information about the Ansible environment.
 
+Dynamic Inventory Documentation
+
+tag_KEY_VALUE ec2.py dynamic tag tag_KEY_VALUE where KEY=Name and VALUE=App01
+
+https://docs.ansible.com/ansible/latest/user_guide/intro_dynamic_inventory.html
+
 ## GitHub
 
 You don't need to create a GitHub account to test this project, but I suggest you to create one and fork the following repositores:
