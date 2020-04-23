@@ -113,7 +113,7 @@ In order to access an AWS instance we need to provide (create) a SSH Key to be u
 In a Unix-like operating system the default location for the SSH keys is the .ssh directory within the current user's home directory. To create the a SSH key execute the following commands:
 
 ```
-$ ssh-keygen -t rsa -b 4096 -f ~/.ssh/ansible_aws
+$ ssh-keygen -m PEM -t rsa -b 4096 -f ~/.ssh/terraform-ansible-aws
 For simplicity, press enter to accept the default values.
 ```
 
