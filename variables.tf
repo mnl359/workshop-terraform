@@ -175,7 +175,7 @@ variable "rds_instance_class" {
 
 variable "rds_database_name" {
     description     = "RDS Database Name"
-    default         = "terraform-ansible-01"
+    default         = "terraformansible01"
 }
 
 variable "rds_database_username" {

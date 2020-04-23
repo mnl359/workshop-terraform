@@ -64,7 +64,7 @@ jobs:
           at: ~/repo
       - add_ssh_keys:
           fingerprints:
-            - "45:d9:07:ae:57:59:ba:37:f3:12:06:61:5c:bd:92:a4"
+            - "77:9b:3d:97:69:39:cc:11:0f:4a:e3:4d:3d:39:59:3b"
       - run:
           name: ansible deployment
           command: |
