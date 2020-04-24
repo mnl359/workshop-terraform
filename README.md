@@ -33,6 +33,8 @@ These instructions are based on macOS operating system, but I think they will be
 - Amazon Virtual Private Cloud (VPC)
 - Amazon RDS for MySQL
 
+mysql -u admindb -p -h terraform-20200424225011192900000004.c8zdmqnhosul.us-east-1.rds.amazonaws.com
+
 ## Terraform installation
 
 Assuming you have AWS CLI configured in your workstation and you are able to create resources with it, the next step is to install Terraform.
