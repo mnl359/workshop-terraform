@@ -1,5 +1,7 @@
 # AWS Application Deployment using Terraform and Ansible
 
+We are going to implement the following architecture:
+
 This documentation is outdated. I will update it as soon as possible.
 
 Remember to verify that you have permission to create service linked role.
