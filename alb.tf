@@ -15,20 +15,17 @@ module "alb" {
       backend_protocol = "HTTP"
       backend_port     = 80
       target_type      = "instance"
-    }
-  ]
-
-  health_check = [
-    {
-      enabled               = "true"
-      protocol              = "HTTP"
-      path                  = "/"
-      port                  = "traffic-port"
-      healthy_threshold     = 5
-      unhealthy_threshold   = 3
-      timeout               = 5
-      interval              = 30
-      matcher               = "200,301"
+      health_check = {
+        enabled             = true
+        interval            = 30
+        path                = "/"
+        port                = "traffic-port"
+        healthy_threshold   = 5
+        unhealthy_threshold = 3
+        timeout             = 6
+        protocol            = "HTTP"
+        matcher             = "200,202,301"
+      }
     }
   ]
 
