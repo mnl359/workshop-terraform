@@ -1,0 +1,45 @@
+---
+# tasks file for app
+
+- name: Installing Apache Webserver
+  yum:
+    name:
+      - python-simplejson
+      - httpd
+      - php
+      - php-mysql
+    use_backend: yum
+
+- name: Removing httpd welcome page from webserver
+  file:
+    path: "/etc/httpd/conf.d/welcome.conf"
+    state: absent
+
+# I need to find a solution
+- name: Downloading wordpress to document root of remote nodes
+  unarchive:
+    src: http://wordpress.org/wordpress-5.1.1.tar.gz
+    dest: /var/www/html/
+    remote_src: yes
+
+- name: Renaming sample wordpress configuration from webserver
+  command: "mv /var/www/html/wordpress/wp-config-sample.php /var/www/html/wordpress/wp-config.php"
+
+- name: Update WordPress config file
+  lineinfile: dest=/var/www/html/wordpress/wp-config.php regexp={{ item.regexp }} line={{ item.line }}
+  with_items:
+    - {'regexp': "define\\( 'DB_NAME', '(database_name_here)+' \\);", 'line': "define('DB_NAME', '{{wp_mysql_db}}');"}
+    - {'regexp': "define\\( 'DB_USER', '(username_here)+' \\);", 'line': "define('DB_USER', '{{wp_mysql_user}}');"}
+    - {'regexp': "define\\( 'DB_PASSWORD', '(password_here)+' \\);", 'line': "define('DB_PASSWORD', '{{wp_mysql_password}}');"}
+    - {'regexp': "define\\( 'DB_HOST', '(localhost)+' \\);", 'line': "define('DB_HOST', '{{wp_mysql_host}}');"}
+
+- name: Update default Apache site
+  lineinfile:
+    dest=/etc/httpd/conf/httpd.conf
+    line="DocumentRoot /var/www/html/wordpress"
+
+- name: Enable httpd
+  shell: sudo systemctl enable httpd
+
+- name: Start httpd
+  shell: sudo systemctl start httpd
