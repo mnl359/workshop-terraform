@@ -15,6 +15,7 @@ resource "aws_db_subnet_group" "private_subnets" {
 }
 
 resource "aws_db_instance" "default" {
+    identifier              = var.rds_database_identifier
     allocated_storage       = var.rds_allocated_storage
     storage_type            = var.rds_storage_type
     engine                  = var.rds_engine

@@ -164,6 +164,11 @@ variable "instance_name" {
 
 /* RDS Configuration Init */
 
+variable "rds_database_identifier" {
+    description     = "RDS Database Identifier"
+    default         = "terraform-ansible-01"
+}
+
 variable "rds_instance_class" {
     description     = "RDS Instance Class"
     default         = "db.t2.micro"
