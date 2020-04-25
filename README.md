@@ -27,7 +27,6 @@ These instructions are based on macOS operating system, but I think they will be
 - Git
 - SSH
 - AWS (under free tier, but it is your responsibility of any cost you may incur)
-- AWS CLI
 - Amazon EC2
 - Amazon Elastic Load Balancing
 - Amazon Virtual Private Cloud (VPC)
