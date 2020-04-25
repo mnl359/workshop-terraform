@@ -142,7 +142,7 @@ variable "ec2_machine_type" {
 # Number of EC2 Instances
 variable "number_of_instances" {
     description     = "Number of instances"
-    default         = 3 
+    default         = 1 
 }
 
 variable "key_name" {
