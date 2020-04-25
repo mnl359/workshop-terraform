@@ -10,11 +10,6 @@ terraform: &terraform
     TF_VAR_AWS_DEFAULT_REGION: $AWS_DEFAULT_REGION
     TF_VAR_AWS_SECRET_ACCESS_KEY: $AWS_SECRET_ACCESS_KEY
 
-ansible: &ansible
-  working_directory: ~/repo
-  docker:
-    - image: circleci/python:3.8.2
-
 jobs:
   init:
     <<: *terraform
@@ -57,23 +52,6 @@ jobs:
           path: ~/repo/tfresult
           destination: tfresult
 
-  ansible_deployment:
-    <<: *ansible
-    steps:
-      - attach_workspace:
-          at: ~/repo
-      - add_ssh_keys:
-          fingerprints:
-            - "77:9b:3d:97:69:39:cc:11:0f:4a:e3:4d:3d:39:59:3b"
-      - run:
-          name: ansible deployment
-          command: |
-            pip install ansible
-            pip install boto
-            wget https://releases.hashicorp.com/terraform/0.12.24/terraform_0.12.24_linux_amd64.zip
-            unzip terraform_0.12.24_linux_amd64.zip
-            ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e db_endpoint=$(./terraform output db_instance_address)
-
   destroy:
     <<: *terraform
     steps:
@@ -94,13 +72,6 @@ workflows:
       - apply:
           requires:
             - plan
-          filters:
-            branches:
-              only:
-                - master
-      - ansible_deployment:
-          requires:
-            - apply
           filters:
             branches:
               only:
