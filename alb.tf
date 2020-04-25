@@ -18,6 +18,20 @@ module "alb" {
     }
   ]
 
+  health_check = [
+    {
+      enabled               = "true"
+      protocol              = "HTTP"
+      path                  = "/"
+      port                  = "traffic-port"
+      healthy_threshold     = 5
+      unhealthy_threshold   = 3
+      timeout               = 5
+      interval              = 30
+      matcher               = "200,301"
+    }
+  ]
+
   http_tcp_listeners = [
     {
       port               = 80
