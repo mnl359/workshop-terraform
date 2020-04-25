@@ -63,7 +63,7 @@ locals {
 
   max_private_subnets       = 2
   max_database_subnets      = 2
-  max_public_subnets        = 2
+  max_public_subnets        = 3
 }
 
 locals {
