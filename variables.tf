@@ -139,20 +139,16 @@ variable "ec2_machine_type" {
     default         = "t2.micro"
 }
 
+# Number of EC2 Instances
 variable "number_of_instances" {
     description     = "Number of instances"
-    default         = 2
+    default         = 3 
 }
 
 variable "key_name" {
     description     = "AWS Key Name"
     default         = "terraform-ansible-01"
 }
-
-# variable "ssh_private_key" {
-#     description     = "Private Key for Terraform-Ansible Project"
-#     default         = "awslabs.pem"
-# }
 
 variable "ssh_public_key" {
     description     = "Public Key for Terraform-Ansible Project"
