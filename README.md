@@ -4,6 +4,25 @@ In the following notes I want to show you how to deploy Wordpress Web Applicatio
 
 Long explanation on Medium. Comming soon...
 
+**Terraform Variables**
+
+Adjust default values on the following variables in variables.tf file.
+
+| Line | Variable Name | Value | Description |
+| --- | --- | --- | --- |
+| 44 | vpc_name | terraform-ansible-01 | Name of the custom VPC |
+| 49 | cidr_ab | development = "172.22" |  |
+| 97 | web_sg_name | web_sg_01 | Security Group to control the access from ALB to the Application Web Servers |
+| 107 | alb_sg_name | alb_sg_01 | Security Group to control the access from Internet to the ALB |
+| 117 | db_sg_name | db_sg | Security Group to control the access from Application Web Servers to RDS Database |
+| 148 | key_name | terraform-ansible-01 | Name of SSH Key for accessing EC2 instances on AWS |
+| 153 | ssh_public_key | terraform-ansible-aws.pub | Custom SSH Public Key for accessing EC2 instances |
+| 160 | instance_name | App01 | Tag Name assigned to all EC2 instances. Used by Ansible to identify the EC2 instances and to configure them |
+| 167 | rds_database_identifier | terraform-ansible-01 | RDS identifier to be used by Ansible to get the RDS Database needed data to deploy Wordpress |
+| 177 | rds_database_name | terraformansible01 | RDS Database name |
+| 193 | rds_subnet_group_name | db_private_subnet_01 | RDS Database private subnet |
+| 225 | alb_name | terraform-ansible-alb-01 | Application Load Balancer name |
+
 This documentation is outdated. I will update it as soon as possible.
 
 Remember to verify that you have permission to create service linked role.
