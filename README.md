@@ -12,7 +12,18 @@ Long explanation on Medium. Comming soon...
 - Terraform
 - Ansible
 
-## AWS Basic Architecture
+## Basic Architecture
+
+This is a 30,000 feet view of the architecture we are going to implement using this tutorial. 
+
+![](images/basic-architecture.png)
+
+1. A Cloud Architect design the infrastructure using Terraform and Ansible code and upload it to GitHub
+2. GitHub communicates performed changes on `master` or `destroy`repositories to CircleCI
+3. CircleCI get the source code from GitHub repository and prepare a virtual machine with all required tools (AWS CLI, Terraform and Ansible), establish comunication with AWS and deploy the infrastructure described on GitHub source code repository
+4. AWS receive the instructions from Terraform and Ansible of how to deploy the corresponding resources
+
+## AWS Architecture
 
 ![](images/architecture.png)
 
@@ -123,6 +134,8 @@ If you change the name of the SSH key (ansible_aws) for something different, you
 ## CircleCI Configuration
 
 I assume you have an AWS account and that you know the basis of AWS administration and configuration. 
+
+Comming soon...
 
 # Side Notes
 
