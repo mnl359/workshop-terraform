@@ -1,6 +1,8 @@
-# AWS Application Deployment using Terraform and Ansible
+# AWS Application Deployment using Terraform, Ansible and CircleCI
 
-We are going to implement the following architecture:
+In the following notes I want to show you how to deploy Wordpress Web Application to AWS using Terraform, Ansible and CircleCI.
+
+Long explanation on Medium. Comming soon...
 
 This documentation is outdated. I will update it as soon as possible.
 
@@ -11,8 +13,6 @@ https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/UsingWithRDS.IAM.ServiceL
 Adding Elastic Load Balancer permission.
 
 "iam:CreateServiceLinkedRole"
-
-In the following project I would like to show you how to deploy a NodeJS application to AWS cloud provider using Terraform and Ansible. 
 
 I assume you have an AWS account and that you know the basis of AWS administration and configuration. I also assume your workstation is configured with AWS CLI and that you have created an IAM account (user) with full administration permisions to test the instructions described here.
 
