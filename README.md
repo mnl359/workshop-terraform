@@ -12,6 +12,23 @@ Long explanation on Medium. Comming soon...
 - Terraform
 - Ansible
 
+**GitHub**
+
+I assume that you're going to clone this respository and work in your workstation and your own GitHub account. You need the following tools:
+
+- Git
+- Visual Studio Code (or any other IDE or Text Editor like Atom)
+
+Once you have Git installed in your computer you can use the following command to clone this repository:
+
+`git clone https://github.com/williammunozr/terraform-ansible-aws.git`
+
+After that, remove the link to my repository:
+
+`git remote remove origin`
+
+And create your own GitHub repository.
+
 **Terraform Variables**
 
 Adjust default values on the following variables in variables.tf file.
