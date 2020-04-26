@@ -43,7 +43,30 @@ Adjust values on the following keys in state_config.tf file:
 | 3    | bucket         | terraform.hachiko.app | S3 Bucket name used to save the Terraform State |
 | 7    | dynamodb_table | terraform-state-01    | DynamoDB table used to save the Terraform Lock  |
 
-The full AWS configuration is outside of this tutorial.
+The full AWS configuration is outside of this tutorial. In short, we need an IAM user with access keys activated and with the following policy assigned:
+
+```json
+{
+    "Version": "2012-10-17",
+    "Statement": [
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "rds:*",
+                "s3:*",
+                "ec2:*",
+                "dynamodb:*",
+                "elasticloadbalancing:*",
+                "iam:CreateServiceLinkedRole"
+            ],
+            "Resource": "*"
+        }
+    ]
+}
+```
+
+This policy gives the user all the permissions needed to work with this tutorial, but my recommendation is to give the least permissions as possible.
 
 ## Terraform Variables
 
@@ -63,6 +86,10 @@ Adjust default values on the following variables in variables.tf file.
 | 177 | rds_database_name | terraformansible01 | RDS Database name |
 | 193 | rds_subnet_group_name | db_private_subnet_01 | RDS Database private subnet |
 | 225 | alb_name | terraform-ansible-alb-01 | Application Load Balancer name |
+
+## Ansible Configuration
+
+
 
 This documentation is outdated. I will update it as soon as possible.
 
