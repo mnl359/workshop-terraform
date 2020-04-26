@@ -11,7 +11,7 @@ Adjust default values on the following variables in variables.tf file.
 | Line | Variable Name | Value | Description |
 | --- | --- | --- | --- |
 | 44 | vpc_name | terraform-ansible-01 | Name of the custom VPC |
-| 49 | cidr_ab | development = "172.22" |  |
+| 49 | cidr_ab | development = "172.22" | Adjust the values accordingly to your needs. You must set values for: development, qa, staging and production |
 | 97 | web_sg_name | web_sg_01 | Security Group to control the access from ALB to the Application Web Servers |
 | 107 | alb_sg_name | alb_sg_01 | Security Group to control the access from Internet to the ALB |
 | 117 | db_sg_name | db_sg | Security Group to control the access from Application Web Servers to RDS Database |
