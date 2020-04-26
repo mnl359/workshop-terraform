@@ -4,7 +4,7 @@ In the following notes I want to show you how to deploy Wordpress Application to
 
 Long explanation on Medium. Comming soon...
 
-**Used Technologies**
+## Used Technologies
 
 - GitHub
 - CircleCI
@@ -12,7 +12,7 @@ Long explanation on Medium. Comming soon...
 - Terraform
 - Ansible
 
-**GitHub**
+## GitHub
 
 I assume that you're going to clone this respository, work in your workstation and with your own GitHub account. You need the following tools:
 
@@ -29,7 +29,21 @@ After that, remove the link to my repository:
 
 And create your own GitHub repository. You need to follow this step to configure CircleCI.
 
-**Terraform Variables**
+## AWS configuration
+
+It's good practice to manage the Terraform State and Lock on a centralized location. To accomplish this requirement we use DynamoDB and S3 Bucket.
+
+- Create a S3 Bucket with versioning active
+- Create a DynamoDB table with LockID as primary key
+
+| Line | Variable Name  | Value                 | Description                                     |
+| ---- | -------------- | --------------------- | ----------------------------------------------- |
+| 3    | bucket         | terraform.hachiko.app | S3 Bucket name used to save the Terraform State |
+| 7    | dynamodb_table | terraform-state-01    | DynamoDB table used to save the Terraform Lock  |
+
+The full AWS configuration is outside of this tutorial.
+
+## Terraform Variables
 
 Adjust default values on the following variables in variables.tf file.
 
