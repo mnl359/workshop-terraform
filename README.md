@@ -1,8 +1,13 @@
-# AWS Application Deployment using Terraform, Ansible and CircleCI
+# Wordpress Application Deployment using Terraform, Ansible and CircleCI to AWS
 
 In the following notes I want to show you how to deploy Wordpress Web Application to AWS using Terraform, Ansible and CircleCI.
 
 Long explanation on Medium. Comming soon...
+
+**Tools needed in your workstation to follow this tutorial**
+
+- Git
+- VS Code (or any other Text Editor, IDE)
 
 **Terraform Variables**
 
