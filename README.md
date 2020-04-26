@@ -14,7 +14,7 @@ Long explanation on Medium. Comming soon...
 
 **GitHub**
 
-I assume that you're going to clone this respository and work in your workstation and your own GitHub account. You need the following tools:
+I assume that you're going to clone this respository, work in your workstation and with your own GitHub account. You need the following tools:
 
 - Git
 - Visual Studio Code (or any other IDE or Text Editor like Atom)
@@ -27,7 +27,7 @@ After that, remove the link to my repository:
 
 `git remote remove origin`
 
-And create your own GitHub repository.
+And create your own GitHub repository. You need to follow this step to configure CircleCI.
 
 **Terraform Variables**
 
