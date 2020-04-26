@@ -36,7 +36,9 @@ It's good practice to manage the Terraform State and Lock on a centralized locat
 - Create a S3 Bucket with versioning active
 - Create a DynamoDB table with LockID as primary key
 
-| Line | Variable Name  | Value                 | Description                                     |
+Adjust values on the following keys in state_config.tf file: 
+
+| Line | Key Name       | Value                 | Description                                     |
 | ---- | -------------- | --------------------- | ----------------------------------------------- |
 | 3    | bucket         | terraform.hachiko.app | S3 Bucket name used to save the Terraform State |
 | 7    | dynamodb_table | terraform-state-01    | DynamoDB table used to save the Terraform Lock  |
