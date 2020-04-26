@@ -12,6 +12,10 @@ Long explanation on Medium. Comming soon...
 - Terraform
 - Ansible
 
+## AWS Basic Architecture
+
+![](images/architecture.png)
+
 ## GitHub
 
 I assume that you're going to clone this respository, work in your workstation and with your own GitHub account. You need the following tools:
