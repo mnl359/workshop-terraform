@@ -2,7 +2,7 @@
 
 In the following notes I want to show you how to deploy Wordpress Application to AWS using Terraform, Ansible and CircleCI.
 
-Long explanation on Medium. Comming soon...
+Long explanation on Medium. Coming soon...
 
 ## Used Technologies
 
@@ -135,7 +135,7 @@ If you change the name of the SSH key (ansible_aws) for something different, you
 
 I assume you have an AWS account and that you know the basis of AWS administration and configuration. 
 
-Comming soon...
+Coming soon...
 
 # Side Notes
 
