@@ -1,4 +1,5 @@
 /* Project Tags */
+# Esto es un comentario
 
 variable "project_owner" {
     description     = "Tag to identify the resource owner name"
