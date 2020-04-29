@@ -77,7 +77,7 @@ jobs:
             pip install boto
             pip install simplejson
             aws configure list
-            ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e wp_mysql_host=$(aws rds describe-db-instances --db-instance-identifier terraform-ansible-01 | python3 -c 'import sys, simplejson as json; print(json.load(sys.stdin)["DBInstances"][0]["Endpoint"]["Address"])')
+            ansible-playbook -i ansible/ec2.py ansible/app.yml --user ec2-user -e wp_mysql_host=$(aws rds describe-db-instances --db-instance-identifier terraform-ansible-02 | python3 -c 'import sys, simplejson as json; print(json.load(sys.stdin)["DBInstances"][0]["Endpoint"]["Address"])')
 
   destroy:
     <<: *terraform
