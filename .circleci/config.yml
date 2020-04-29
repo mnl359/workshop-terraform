@@ -67,7 +67,7 @@ jobs:
           at: ~/repo
       - add_ssh_keys:
           fingerprints:
-            - "77:9b:3d:97:69:39:cc:11:0f:4a:e3:4d:3d:39:59:3b"
+            - "3b:ef:b1:48:8c:0b:c6:e9:19:f7:f9:83:6c:1d:f0:54"
       - aws-cli/setup:
           profile-name: default
       - run:

@@ -43,16 +43,16 @@ variable "environment" {
 
 variable "vpc_name" {
     description     = "VPC Name"
-    default         = "terraform-ansible-01"
+    default         = "terraform-ansible-02"
 }
 
 variable "cidr_ab" {
     type = map
     default = {
         development = "172.22"
-        qa          = "172.24"
-        staging     = "172.26"
-        production  = "172.28"
+        qa          = "172.23"
+        staging     = "172.24"
+        production  = "172.25"
     }
 }
 
@@ -96,7 +96,7 @@ locals {
 
 variable "web_sg_name" {
     description     = "Web Security Group Name"
-    default         = "web_sg_01"
+    default         = "web_sg_02"
 }
 
 variable "web_sg_description" {
@@ -106,7 +106,7 @@ variable "web_sg_description" {
 
 variable "alb_sg_name" {
     description     = "ALB Security Group Name"
-    default         = "alb_sg_01"
+    default         = "alb_sg_02"
 }
 
 variable "alb_sg_description" {
@@ -116,7 +116,7 @@ variable "alb_sg_description" {
 
 variable "db_sg_name" {
     description     = "DB Security Group Name"
-    default         = "db_sg"  
+    default         = "db_sg_02"  
 }
 
 variable "db_sg_description" {
@@ -147,7 +147,7 @@ variable "number_of_instances" {
 
 variable "key_name" {
     description     = "AWS Key Name"
-    default         = "terraform-ansible-01"
+    default         = "terraform-ansible-02"
 }
 
 variable "ssh_public_key" {
@@ -159,14 +159,14 @@ variable "ssh_public_key" {
 
 variable "instance_name" {
     description     = "Tag for the instances name"
-    default         = "App01"
+    default         = "App02"
 }
 
 /* RDS Configuration Init */
 
 variable "rds_database_identifier" {
     description     = "RDS Database Identifier"
-    default         = "terraform-ansible-01"
+    default         = "terraform-ansible-02"
 }
 
 variable "rds_instance_class" {
@@ -176,7 +176,7 @@ variable "rds_instance_class" {
 
 variable "rds_database_name" {
     description     = "RDS Database Name"
-    default         = "terraformansible01"
+    default         = "terraformansible02"
 }
 
 variable "rds_database_username" {
@@ -192,7 +192,7 @@ variable "rds_database_password" {
 
 variable "rds_subnet_group_name" {
     description     = "RDS Subnet Group Name"
-    default         = "db_private_subnet_01"
+    default         = "db_private_subnet_02"
 }
 
 variable "rds_allocated_storage" {
@@ -224,7 +224,7 @@ variable "rds_parameter_group_name" {
 
 variable "alb_name" {
     description     = "ALB Name"
-    default         = "terraform-ansible-alb-01"
+    default         = "terraform-ansible-alb-02"
 }
 
 variable "alb_type" {
